@@ -12,8 +12,8 @@ public class EmployeeService {
     private static Long nextEmployeeId = 1L;
 
     public Employee createEmployee(Employee employee) {
-        employee.setId(nextEmployeeId++);
-        employeeMap.put(employee.getId(), employee);
+        employee.setEmployeeId(nextEmployeeId++);
+        employeeMap.put(employee.getEmployeeId(), employee);
         return employee;
     }
 

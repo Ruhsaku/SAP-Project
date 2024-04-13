@@ -12,8 +12,8 @@ public class CustomerService {
     private static Long nextCustomerId = 1L;
 
     public Customer createCustomer(Customer customer) {
-        customer.setId(nextCustomerId++);
-        customerMap.put(customer.getId(), customer);
+        customer.setCustomerId(nextCustomerId++);
+        customerMap.put(customer.getCustomerId(), customer);
         return customer;
     }
 

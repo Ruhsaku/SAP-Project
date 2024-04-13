@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfume Store - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .product {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .product img {
+            width: 100%;
+            display: block;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .product h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .product p {
+            margin: 0;
+            color: #666;
+        }
+        .product button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .product button:hover {
+            background-color: #0056b3;
+        }
+        .logout {
+            text-align: center;
+            margin-top: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to the Perfume Store!</h1>
+    <div class="products">
+        <div class="product">
+            <img src="perfume1.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Perfume 1</h3>
+                <p>$50</p>
+                <button type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <!-- Repeat the product card structure for other products -->
+    </div>
+    <div class="logout">
+        <p><a href="/cart">Cart</a></p>
+        <p><a href="/">Logout</a></p>
+    </div>
+</div>
+
+</body>
+</html>
