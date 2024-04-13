@@ -1,34 +1,33 @@
 ### Code for the Database ### 
+DROP DATABASE IF EXISTS OnlineStore;
 CREATE DATABASE OnlineStore;
 USE OnlineStore;
 
-CREATE TABLE Users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+CREATE TABLE Employee (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL, -- hashed password SHA2(str, hash_length(bits)); 
 -- Security Hash Algorithm 2
     email VARCHAR(100) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE Employees (
-    employee_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    user_id INT NOT NULL UNIQUE,
+    last_name VARCHAR(50) NOT NULL,
     position VARCHAR(100) NOT NULL,
     salary DECIMAL(10,2) NOT NULL,
-    contact_number VARCHAR(30) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    contact_number VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE Customers (
+CREATE TABLE Customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    user_id INT NOT NULL UNIQUE,
-    loyalty_points INT DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL, -- hashed password SHA2(str, hash_length(bits)); 
+-- Security Hash Algorithm 2
+    email VARCHAR(100) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    loyalty_points INT DEFAULT 0
 );
 
-CREATE TABLE Addresses (
+CREATE TABLE Address (
     address_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     city VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
@@ -47,14 +46,14 @@ CREATE TABLE Products (
 
 CREATE TABLE Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    user_id INT NOT NULL,
+    customer_id INT NOT NULL,
     address_id INT NOT NULL,
     order_date TIMESTAMP NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (address_id) REFERENCES Addresses(address_id)
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (address_id) REFERENCES Address(address_id)
 );
 
-CREATE TABLE Orders_Products (
+CREATE TABLE OrdersProducts (
     order_product_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
