@@ -10,12 +10,12 @@ import java.util.Map;
 
 @Service
 public class CustomerService {
-    private final CustomerRepository customerRepository;
-
-    @Autowired
-    public CustomerService (CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+//    private final CustomerRepository customerRepository;
+//
+//    @Autowired
+//    public CustomerService (CustomerRepository customerRepository) {
+//        this.customerRepository = customerRepository;
+//    }
 
     private final Map<Long, Customer> customerMap = new HashMap<>();
     private static Long nextCustomerId = 1L;
@@ -30,7 +30,7 @@ public class CustomerService {
         return customerMap.get(customerId);
     }
 
-    public List<Employee> getCustomers() {
-        return customerRepository.findAll();
-    }
+//    public List<Customer> getCustomers() {
+//        return customerRepository.findAll();
+//    }
 }

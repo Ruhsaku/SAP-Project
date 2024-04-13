@@ -22,19 +22,13 @@ public class EmployeeController {
 //        return employeeService.createEmployee(employee);
 //    }
 
-<<<<<<< Updated upstream
-
-
-
-=======
 //    @GetMapping("/{employeeId}")
 //    public Employee getEmployeeById(@PathVariable("employeeId") Long employeeId) {
 //        return employeeService.getEmployeeById(employeeId);
 //    }
 
-    @GetMapping
-    public List<Employee> getEmployees() {
-        return employeeService.getEmployees();
-    }
->>>>>>> Stashed changes
+//    @GetMapping
+//    public List<Employee> getEmployees() {
+//        return employeeService.getEmployees();
+//    }
 }

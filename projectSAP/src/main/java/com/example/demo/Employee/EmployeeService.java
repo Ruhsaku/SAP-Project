@@ -11,12 +11,12 @@ import java.util.Map;
 
 @Service
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
-
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+//    private final EmployeeRepository employeeRepository;
+//
+//    @Autowired
+//    public EmployeeService(EmployeeRepository employeeRepository) {
+//        this.employeeRepository = employeeRepository;
+//    }
 
     private final Map<Long, Employee> employeeMap = new HashMap<>();
     private static Long nextEmployeeId = 1L;
@@ -31,7 +31,7 @@ public class EmployeeService {
         return employeeMap.get(employeeId);
     }
 
-    public List<Employee> getEmployees() {
-        return employeeRepository.findAll();
-    }
+//    public List<Employee> getEmployees() {
+//        return employeeRepository.findAll();
+//    }
 }
