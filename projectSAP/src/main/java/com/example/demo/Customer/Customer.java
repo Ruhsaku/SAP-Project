@@ -15,7 +15,7 @@ public class Customer extends User {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "customer_sequence"
     )
     private Long customerId;
     private Integer loyaltyPoints;
@@ -25,39 +25,11 @@ public class Customer extends User {
     }
 
     public Customer(Long customerId,
-                    Integer loyaltyPoints) {
-        this.customerId = customerId;
-        this.loyaltyPoints = loyaltyPoints;
-    }
-
-    public Customer(String password,
-                    String username,
-                    Long customerId,
-                    Integer loyaltyPoints) {
-        super(password, username);
-        this.customerId = customerId;
-        this.loyaltyPoints = loyaltyPoints;
-    }
-
-    public Customer(Long userId,
                     String firstName,
                     String lastName,
                     String password,
                     String username,
                     String email,
-                    Long customerId,
-                    Integer loyaltyPoints) {
-        super(userId, firstName, lastName, password, username, email);
-        this.customerId = customerId;
-        this.loyaltyPoints = loyaltyPoints;
-    }
-
-    public Customer(String firstName,
-                    String lastName,
-                    String password,
-                    String username,
-                    String email,
-                    Long customerId,
                     Integer loyaltyPoints) {
         super(firstName, lastName, password, username, email);
         this.customerId = customerId;

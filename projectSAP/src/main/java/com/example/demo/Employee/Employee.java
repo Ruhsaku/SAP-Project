@@ -2,8 +2,21 @@ package com.example.demo.Employee;
 
 import com.example.demo.UserType;
 import com.example.demo.User;
+import jakarta.persistence.*;
 
+@Entity
+@Table
 public class Employee extends User {
+    @Id
+    @SequenceGenerator(
+            name = "employee_sequence",
+            sequenceName = "employee_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "employee_sequence"
+    )
     private Long employeeId;
     private Float salary;
     private String contactNumber;
@@ -13,61 +26,23 @@ public class Employee extends User {
 
     }
 
+
     public Employee(Long employeeId,
-                    Float salary,
-                    String contactNumber,
-                    String position) {
-        this.employeeId = employeeId;
-        this.salary = salary;
-        this.contactNumber = contactNumber;
-        this.position = position;
-    }
-
-    public Employee(String password,
-                    String username,
-                    Long employeeId,
-                    Float salary,
-                    String contactNumber,
-                    String position) {
-        super(password, username);
-        this.employeeId = employeeId;
-        this.salary = salary;
-        this.contactNumber = contactNumber;
-        this.position = position;
-    }
-
-    public Employee(Long userId,
                     String firstName,
                     String lastName,
-                    String password,
                     String username,
+                    String password,
                     String email,
-                    Long employeeId,
                     Float salary,
                     String contactNumber,
                     String position) {
-        super(userId, firstName, lastName, password, username, email);
+        super(firstName, lastName, username, password, email);
         this.employeeId = employeeId;
         this.salary = salary;
         this.contactNumber = contactNumber;
         this.position = position;
     }
 
-    public Employee(String firstName,
-                    String lastName,
-                    String password,
-                    String username,
-                    String email,
-                    Long employeeId,
-                    Float salary,
-                    String contactNumber,
-                    String position) {
-        super(firstName, lastName, password, username, email);
-        this.employeeId = employeeId;
-        this.salary = salary;
-        this.contactNumber = contactNumber;
-        this.position = position;
-    }
 
     public Long getEmployeeId() {
         return employeeId;
@@ -104,6 +79,5 @@ public class Employee extends User {
     @Override
     public UserType getUserType() {
         return UserType.EMPLOYEE;
-
     }
 }

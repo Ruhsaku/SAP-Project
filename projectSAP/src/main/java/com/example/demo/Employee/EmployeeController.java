@@ -16,19 +16,13 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-//    @PostMapping
-//    public Employee createEmployee(@RequestBody Employee employee) {
-//
-//        return employeeService.createEmployee(employee);
-//    }
+    @PostMapping
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return employeeService.createEmployee(employee);
+    }
 
-//    @GetMapping("/{employeeId}")
-//    public Employee getEmployeeById(@PathVariable("employeeId") Long employeeId) {
-//        return employeeService.getEmployeeById(employeeId);
-//    }
-
-//    @GetMapping
-//    public List<Employee> getEmployees() {
-//        return employeeService.getEmployees();
-//    }
+    @GetMapping
+    public List<Employee> getEmployees() {
+        return employeeService.getEmployees();
+    }
 }
