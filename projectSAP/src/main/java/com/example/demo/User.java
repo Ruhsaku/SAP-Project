@@ -1,16 +1,17 @@
 package com.example.demo;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class User implements Serializable {
+public abstract class User {
 
-    private Long id;
+    private Long userId;
+    private String firstName;
+    private String lastName;
     private String password;
     private String username;
+    private String email;
 
-    public User(){
-
+    public User() {
     }
 
     public User(String password, String username) {
@@ -19,18 +20,45 @@ public abstract class User implements Serializable {
 
     }
 
-    public User(Long id, String password, String username) {
+    public User(Long userId, String firstName, String lastName, String password, String username, String email) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.username = username;
-        this.id = id;
+        this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public User(String firstName, String lastName, String password, String username, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.username = username;
+        this.email = email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -47,6 +75,14 @@ public abstract class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public abstract UserType getUserType();
