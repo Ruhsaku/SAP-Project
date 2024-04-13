@@ -13,14 +13,22 @@ public class Employee extends User {
 
     }
 
-    public Employee(Long employeeId, Float salary, String contactNumber, String position) {
+    public Employee(Long employeeId,
+                    Float salary,
+                    String contactNumber,
+                    String position) {
         this.employeeId = employeeId;
         this.salary = salary;
         this.contactNumber = contactNumber;
         this.position = position;
     }
 
-    public Employee(String password, String username, Long employeeId, Float salary, String contactNumber, String position) {
+    public Employee(String password,
+                    String username,
+                    Long employeeId,
+                    Float salary,
+                    String contactNumber,
+                    String position) {
         super(password, username);
         this.employeeId = employeeId;
         this.salary = salary;
@@ -28,7 +36,16 @@ public class Employee extends User {
         this.position = position;
     }
 
-    public Employee(Long userId, String firstName, String lastName, String password, String username, String email, Long employeeId, Float salary, String contactNumber, String position) {
+    public Employee(Long userId,
+                    String firstName,
+                    String lastName,
+                    String password,
+                    String username,
+                    String email,
+                    Long employeeId,
+                    Float salary,
+                    String contactNumber,
+                    String position) {
         super(userId, firstName, lastName, password, username, email);
         this.employeeId = employeeId;
         this.salary = salary;
@@ -36,7 +53,15 @@ public class Employee extends User {
         this.position = position;
     }
 
-    public Employee(String firstName, String lastName, String password, String username, String email, Long employeeId, Float salary, String contactNumber, String position) {
+    public Employee(String firstName,
+                    String lastName,
+                    String password,
+                    String username,
+                    String email,
+                    Long employeeId,
+                    Float salary,
+                    String contactNumber,
+                    String position) {
         super(firstName, lastName, password, username, email);
         this.employeeId = employeeId;
         this.salary = salary;

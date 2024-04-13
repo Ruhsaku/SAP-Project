@@ -2,8 +2,21 @@ package com.example.demo.Customer;
 
 import com.example.demo.User;
 import com.example.demo.UserType;
+import jakarta.persistence.*;
 
+@Entity
+@Table
 public class Customer extends User {
+    @Id
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     private Long customerId;
     private Integer loyaltyPoints;
 

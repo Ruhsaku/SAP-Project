@@ -2,9 +2,15 @@ services:
   mysql:
     image: 'mysql:latest'
     environment:
+<<<<<<< Updated upstream
       - 'MYSQL_DATABASE=onlinemarket'
       - 'MYSQL_PASSWORD=Coco1224'
       - 'MYSQL_ROOT_PASSWORD=Coco1224'
+=======
+      - 'MYSQL_DATABASE=Perfumes_Online_Store_DB'
+      - 'MYSQL_PASSWORD=121222130#'
+      - 'MYSQL_ROOT_PASSWORD=121222130#'
+>>>>>>> Stashed changes
       - 'MYSQL_USER=root'
     ports:
-      - '3306'
+      - '3307'

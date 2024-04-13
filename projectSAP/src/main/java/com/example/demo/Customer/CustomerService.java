@@ -1,12 +1,21 @@
 package com.example.demo.Customer;
 
+import com.example.demo.Employee.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class CustomerService {
+    private final CustomerRepository customerRepository;
+
+    @Autowired
+    public CustomerService (CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     private final Map<Long, Customer> customerMap = new HashMap<>();
     private static Long nextCustomerId = 1L;
@@ -21,4 +30,7 @@ public class CustomerService {
         return customerMap.get(customerId);
     }
 
+    public List<Employee> getCustomers() {
+        return customerRepository.findAll();
+    }
 }

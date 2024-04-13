@@ -3,24 +3,38 @@ package com.example.demo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @GetMapping("/{employeeId}")
-    public Employee getEmployeeById(@PathVariable("employeeId") Long employeeId) {
-        return employeeService.getEmployeeById(employeeId);
+//    @PostMapping
+//    public Employee createEmployee(@RequestBody Employee employee) {
+//
+//        return employeeService.createEmployee(employee);
+//    }
+
+<<<<<<< Updated upstream
+
+
+
+=======
+//    @GetMapping("/{employeeId}")
+//    public Employee getEmployeeById(@PathVariable("employeeId") Long employeeId) {
+//        return employeeService.getEmployeeById(employeeId);
+//    }
+
+    @GetMapping
+    public List<Employee> getEmployees() {
+        return employeeService.getEmployees();
     }
-
-
-
-
+>>>>>>> Stashed changes
 }
