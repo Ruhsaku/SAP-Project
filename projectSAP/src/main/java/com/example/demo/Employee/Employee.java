@@ -7,6 +7,8 @@ import java.util.Objects;
 @Table
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer employeeId;
     private String firstName;
     private String lastName;
@@ -21,6 +23,23 @@ public class Employee {
 
     }
 
+    public Employee(String firstName,
+                    String lastName,
+                    String username,
+                    String password,
+                    String email,
+                    Double salary,
+                    String contactNumber,
+                    String position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.salary = salary;
+        this.contactNumber = contactNumber;
+        this.position = position;
+    }
     public Employee(Integer employeeId,
                     String firstName,
                     String lastName,

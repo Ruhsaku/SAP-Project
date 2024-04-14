@@ -3,9 +3,9 @@ package com.example.demo.PasswordHash;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class PasswordEncoder {
+public class PasswordDecoder {
 
-    public static String encodePassword(String password) {
+    public static boolean verifyPassword(String password, String hashedPassword) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(password.getBytes());
@@ -15,13 +15,13 @@ public class PasswordEncoder {
                 if (hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
-            return hexString.toString();
+            String hashedInputPassword = hexString.toString();
+            return hashedInputPassword.equals(hashedPassword);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             // Handle error or throw RuntimeException
-            return null;
+            return false;
         }
     }
 }
-
 

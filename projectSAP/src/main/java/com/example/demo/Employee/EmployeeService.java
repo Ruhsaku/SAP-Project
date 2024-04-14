@@ -1,15 +1,12 @@
 package com.example.demo.Employee;
 
-import com.example.demo.PasswordEncoder;
-import jakarta.transaction.Transactional;
+import com.example.demo.PasswordHash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-
 @Service
-@Transactional
-public class EmployeeService extends PasswordEncoder {
+public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
@@ -26,11 +23,14 @@ public class EmployeeService extends PasswordEncoder {
         return employeeRepository.save(employee);
     }
     public void saveEmployee(Employee employee) {
-        employee.setPassword(PasswordEncoder.encodePassword(employee.getPassword()));
         employeeRepository.save(employee);
     }
 
     public void saveEmployees(List<Employee> employees) {
+        for (Employee emp: employees) {
+            String hashedPassword = PasswordEncoder.encodePassword(emp.getPassword());
+            emp.setPassword(hashedPassword);
+        }
         employeeRepository.saveAll(employees);
     }
 
