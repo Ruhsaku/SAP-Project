@@ -24,4 +24,8 @@ public class WebController {
     public String employeeHome(){
         return "employeeHome";
     }
+    @RequestMapping("/")
+    public String login(){
+        return "index";
+    }
 }
