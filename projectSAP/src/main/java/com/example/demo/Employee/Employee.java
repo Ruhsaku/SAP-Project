@@ -1,10 +1,7 @@
 package com.example.demo.Employee;
 
-import com.example.demo.UserType;
-import com.example.demo.User;
 import jakarta.persistence.*;
-
-import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -116,8 +113,31 @@ public class Employee {
         this.position = position;
     }
 
-//    @Override
-//    public UserType getUserType() {
-//        return UserType.EMPLOYEE;
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(username, employee.username) && Objects.equals(password, employee.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", salary=" + salary +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", position='" + position + '\'' +
+                '}';
+    }
 }
