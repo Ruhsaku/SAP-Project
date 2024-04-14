@@ -12,7 +12,7 @@ CREATE TABLE Employee (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     position VARCHAR(100) NOT NULL,
-    salary DECIMAL(10,2) NOT NULL,
+    salary DOUBLE NOT NULL,
     contact_number VARCHAR(30) NOT NULL
 );
 
