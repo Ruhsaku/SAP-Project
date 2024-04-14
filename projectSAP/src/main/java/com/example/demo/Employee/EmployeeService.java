@@ -4,6 +4,7 @@ import com.example.demo.PasswordHash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -14,16 +15,8 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    // private final Map<Long, Employee> employeeMap = new HashMap<>();
-    // private static Long nextEmployeeId = 1L;
-
-    public Employee createEmployee(Employee employee) {
-        // employee.setEmployeeId(nextEmployeeId++);
-        // employeeMap.put(employee.getEmployeeId(), employee);
-        return employeeRepository.save(employee);
-    }
-    public void saveEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public List<Employee> getEmployees() {
+        return employeeRepository.findAll();
     }
 
     public void saveEmployees(List<Employee> employees) {
@@ -34,13 +27,13 @@ public class EmployeeService {
         employeeRepository.saveAll(employees);
     }
 
-//    public Employee getEmployeeByUsername(String username) {
-//        return employeeRepository.findByUsername(username);
-//    }
+    public void addNewEmployee(Employee employee) {
+        Optional<Employee> employeeOptional = employeeRepository
+                .findEmployeeByEmail(employee.getEmail());
 
-    public List<Employee> getEmployees() {
-        return employeeRepository.findAll();
+        if (employeeOptional.isPresent()) {
+            throw new IllegalStateException("This email is taken");
+        }
+        employeeRepository.save(employee);
     }
-
-
 }

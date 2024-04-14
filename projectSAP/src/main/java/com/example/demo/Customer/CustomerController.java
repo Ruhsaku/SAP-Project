@@ -9,27 +9,35 @@ import java.util.List;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+    private final CustomerService customerService;
 
     @Autowired
-    private CustomerService customerService;
-
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
-
-    @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
-    }
-
-//    @GetMapping("/{customerId}")
-//    public Customer getCustomerById(@PathVariable("customerId") Long customerId) {
-//        return customerService.getCustomerById(customerId);
-//    }
 
     @GetMapping
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
 
+    @PostMapping("/register")
+    public String registerNewCustomer(@RequestBody Customer customer) {
+        try {
+            customerService.addNewCustomer(customer);
+            return "redirect:/";
+        } catch (IllegalStateException e) {
+            return "redirect:/?error";
+        }
+    }
+
+    @PostMapping("/index")
+    public String loginCustomer(@RequestBody Customer customer) {
+        try {
+            customerService.login(customer);
+            return "redirect:/home";
+        } catch (IllegalStateException e) {
+            return "redirect:/?error";
+        }
+    }
 }
