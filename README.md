@@ -40,6 +40,7 @@ CREATE TABLE Products (
     product_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     product_name VARCHAR(100) NOT NULL,
     type ENUM('men', 'women') NOT NULL,
+    quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     description TEXT
 );
