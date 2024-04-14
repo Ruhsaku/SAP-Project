@@ -8,6 +8,7 @@ import java.util.Objects;
 @Table
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
     private String firstName;
     private String lastName;
@@ -34,6 +35,18 @@ public class Customer {
         this.password = password;
         this.email = email;
         this.loyaltyPoints = loyaltyPoints;
+    }
+    public Customer(String firstName,
+                    String lastName,
+                    String password,
+                    String username,
+                    String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.loyaltyPoints = 0;
     }
 
     public Integer getCustomerId() {

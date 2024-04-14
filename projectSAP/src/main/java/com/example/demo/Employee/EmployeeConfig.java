@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EmployeeConfig {
     @Bean
-    CommandLineRunner commandLineRunner(EmployeeRepository repository) {
+    CommandLineRunner commandLineRunner2(EmployeeRepository repository) {
 
         return args -> {
             Employee martin = new Employee(

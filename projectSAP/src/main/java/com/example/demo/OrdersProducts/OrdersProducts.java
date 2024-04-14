@@ -11,14 +11,14 @@ public class OrdersProducts {
     private Integer orderId;
     private Integer productId;
     private Integer quantity;
-    private Double totalPrice;
+    private Float totalPrice;
 
     public OrdersProducts() {}
 
     public OrdersProducts(Integer orderId,
                           Integer productId,
                           Integer quantity,
-                          Double totalPrice) {
+                          Float totalPrice) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
@@ -29,7 +29,7 @@ public class OrdersProducts {
                           Integer orderId,
                           Integer productId,
                           Integer quantity,
-                          Double totalPrice) {
+                          Float totalPrice) {
         this.orderProductId = orderProductId;
         this.orderId = orderId;
         this.productId = productId;
@@ -69,11 +69,11 @@ public class OrdersProducts {
         this.quantity = quantity;
     }
 
-    public Double getTotalPrice() {
+    public Float getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(Float totalPrice) {
         this.totalPrice = totalPrice;
     }
 }
