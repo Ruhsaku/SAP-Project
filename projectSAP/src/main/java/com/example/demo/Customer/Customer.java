@@ -8,23 +8,15 @@ import jakarta.persistence.*;
 @Table
 public class Customer extends User {
     @Id
-    @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "customer_sequence"
-    )
-    private Long customerId;
+
+    private Integer customerId;
     private Integer loyaltyPoints;
 
     public Customer() {
 
     }
 
-    public Customer(Long customerId,
+    public Customer(Integer customerId,
                     String firstName,
                     String lastName,
                     String password,
@@ -36,11 +28,11 @@ public class Customer extends User {
         this.loyaltyPoints = loyaltyPoints;
     }
 
-    public Long getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 

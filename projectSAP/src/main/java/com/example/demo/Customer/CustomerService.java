@@ -17,8 +17,8 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    // private final Map<Long, Customer> customerMap = new HashMap<>();
-    // private static Long nextCustomerId = 1L;
+//     private final Map<Long, Customer> customerMap = new HashMap<>();
+//     private static Long nextCustomerId = 1L;
 
     public Customer createCustomer(Customer customer) {
         // customer.setCustomerId(nextCustomerId++);

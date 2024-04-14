@@ -21,6 +21,11 @@ public class EmployeeController {
         return employeeService.createEmployee(employee);
     }
 
+    @PostMapping("/saveAll")
+    public void saveEmployees(@RequestBody List<Employee> employees) {
+        employeeService.saveEmployees(employees);
+    }
+
     @GetMapping
     public List<Employee> getEmployees() {
         return employeeService.getEmployees();

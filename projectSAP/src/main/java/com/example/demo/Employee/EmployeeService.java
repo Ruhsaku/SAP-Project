@@ -30,6 +30,10 @@ public class EmployeeService extends PasswordEncoder {
         employeeRepository.save(employee);
     }
 
+    public void saveEmployees(List<Employee> employees) {
+        employeeRepository.saveAll(employees);
+    }
+
 //    public Employee getEmployeeByUsername(String username) {
 //        return employeeRepository.findByUsername(username);
 //    }
