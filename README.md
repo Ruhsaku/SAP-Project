@@ -41,7 +41,7 @@ CREATE TABLE Products (
     product_name VARCHAR(100) NOT NULL,
     type ENUM('men', 'women') NOT NULL,
     quantity INT NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
+    price DOUBLE NOT NULL,
     description TEXT
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE OrdersProducts (
     order_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
-    total_price DECIMAL(10, 2) NOT NULL,
+    total_price DOUBLE NOT NULL,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
