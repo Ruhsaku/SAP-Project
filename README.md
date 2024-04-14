@@ -63,3 +63,33 @@ CREATE TABLE OrdersProducts (
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
+
+INSERT INTO Products (product_name, type, quantity, price, description)
+VALUES
+
+  -- Women's Perfumes
+  ('Chanel No. 5', 'women', 100, 99.99, 'A timeless classic with notes of rose, jasmine, ylang-ylang, and sandalwood.'),
+  ('Miss Dior', 'women', 80, 79.99, 'A sparkling floral fragrance with rose, mandarin, and patchouli.'),
+  ('Black Opium', 'women', 60, 84.99, 'An intense and alluring scent with coffee, vanilla, and white florals.'),
+  ('Heavenly Glow', 'women', 70, 89.99, 'A luminous floral bouquet with rose, jasmine, and magnolia.'),
+  ('La Vie Est Belle', 'women', 50, 69.99, 'A sweet and gourmand fragrance with iris, patchouli, and vanilla.'),
+  ('Lancôme La Vie Est Belle Eau de Toilette', 'women', 85, 84.99, 'A sparkling and fruity fragrance with pear, iris, and vanilla.'),
+  ('Miss Dior Blooming Bouquet', 'women', 70, 69.99, 'A light and airy floral scent with peony, rose, and musk.'),
+  ('Ariana Grande Cloud', 'women', 90, 59.99, 'A gourmand and playful fragrance with lavender, marshmallow, and pear.'),
+  ('Gucci Bloom', 'women', 65, 99.99, 'A romantic and powdery fragrance with tuberose, jasmine, and orris root.'),
+  ('Tom Ford Jasmin Rouge', 'women', 50, 119.99, 'A luxurious and seductive fragrance with jasmine, saffron, and vanilla.'),
+  
+
+  -- Men's Perfumes
+  ('Acqua di Gio', 'men', 90, 74.99, 'A fresh and aquatic fragrance with citrus, marine notes, and woody base.'),
+  ('Bleu de Chanel', 'men', 80, 89.99, 'A woody and aromatic scent with grapefruit, ginger, and cedarwood.'),
+  ('Tom Ford Oud Wood', 'men', 50, 129.99, 'A rich and luxurious fragrance with oud wood, leather, and spices.'),
+  ('Sauvage', 'men', 70, 94.99, 'A bold and spicy fragrance with bergamot, pepper, and ambroxan.'),
+  ('Creed Aventus', 'men', 60, 109.99, 'A citrusy and fruity fragrance with pineapple, black currant, and birch.'),
+  ('Dior Fahrenheit', 'men', 75, 89.99, 'A warm and spicy fragrance with mandarin, nutmeg, and leather.'),
+  ('Acqua di Parma Colonia', 'men', 95, 79.99, 'A classic and refreshing citrus scent with lemon, grapefruit, and lavender.'),
+  ('Tom Ford Noir', 'men', 60, 139.99, 'A mysterious and woody blend with iris, black pepper, and vetiver.'),
+  ('Issey Miyake L\'Eau d\'Issey Pour Homme', 'men', 80, 64.99, 'A fresh and aquatic fragrance with yuzu, cypress, and vetiver.'),
+  ('Armani Code', 'men', 70, 99.99, 'A sophisticated and warm scent with tonka bean, amber, and leather.')
+  
+;
