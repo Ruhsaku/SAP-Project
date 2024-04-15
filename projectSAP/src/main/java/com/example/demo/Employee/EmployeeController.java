@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -42,8 +42,8 @@ public class EmployeeController {
             }
             // return "redirect:/home";
         } catch (IllegalStateException e) {
-            //return "Login failed. Please try again.";
-            return "redirect:/?error";
+            return "Login failed. Please try again.";
+            // return "redirect:/?error";
         }
     }
 }
