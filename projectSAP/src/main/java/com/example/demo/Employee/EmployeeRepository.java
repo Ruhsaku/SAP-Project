@@ -10,6 +10,6 @@ public interface EmployeeRepository
         extends JpaRepository<Employee, Long> {
 
     // SELECT * FROM student WHERE email = ?;
-    @Query("SELECT e FROM Employee e WHERE e.email = ?1")
+    // @Query("SELECT e FROM Employee e WHERE e.email = ?1")
     Optional<Employee> findEmployeeByEmail(String email);
 }

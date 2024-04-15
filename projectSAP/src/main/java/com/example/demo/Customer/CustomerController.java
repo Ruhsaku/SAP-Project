@@ -1,13 +1,12 @@
 package com.example.demo.Customer;
 
-import com.example.demo.Employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -16,28 +15,36 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
+    //@GetMapping
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
 
-    @PostMapping("/register")
+    //@PostMapping("/register")
+    //@ResponseBody
     public String registerNewCustomer(@RequestBody Customer customer) {
         try {
             customerService.addNewCustomer(customer);
-            return "redirect:/";
+            return "Registration successful. Please login.";
         } catch (IllegalStateException e) {
-            return "redirect:/?error";
+            return "Registration failed. Please try again.";
         }
     }
 
-    @PostMapping("/index")
+    //@PostMapping("/")
+    // @ResponseBody
     public String loginCustomer(@RequestBody Customer customer) {
         try {
-            customerService.login(customer);
-            return "redirect:/home";
+            boolean loginSuccessful = customerService.login(customer);
+            if (loginSuccessful) {
+                return "Login successful.";
+            } else {
+                return "Invalid email or password. Please try again.";
+            }
+            // return "redirect:/home";
         } catch (IllegalStateException e) {
-            return "redirect:/?error";
+            return "Login failed. Please try again.";
+            // return "redirect:/?error";
         }
     }
 }

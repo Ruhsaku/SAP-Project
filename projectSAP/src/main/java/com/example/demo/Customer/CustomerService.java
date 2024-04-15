@@ -1,10 +1,10 @@
 package com.example.demo.Customer;
 
-import com.example.demo.Employee.Employee;
 import com.example.demo.PasswordHash.PasswordDecoder;
 import com.example.demo.PasswordHash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +22,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    @ResponseBody
     public void addNewCustomer(Customer customer) {
         Optional<Customer> customerOptional = customerRepository
                 .findCustomerByEmail(customer.getEmail());
@@ -30,23 +31,21 @@ public class CustomerService {
             throw new IllegalStateException("This email is taken");
         } else {
             customer.setPassword(PasswordEncoder.encodePassword(customer.getPassword()));
+            customerRepository.save(customer);
         }
-        customer.setFirstName(customer.getFirstName());
-        customer.setLastName(customer.getLastName());
-        customer.setEmail(customer.getEmail());
-        customer.setUsername(customer.getUsername());
-        customerRepository.save(customer);
+//        customer.setFirstName(customer.getFirstName());
+//        customer.setLastName(customer.getLastName());
+//        customer.setEmail(customer.getEmail());
+//        customer.setUsername(customer.getUsername());
     }
 
-    public void login(Customer customer) {
+    public boolean login(Customer customer) {
         Optional<Customer> customerOptional = customerRepository
                 .findCustomerByEmail(customer.getEmail());
         if (customerOptional.isPresent()) {
             Customer existingCustomer = customerOptional.get();
             String hashedPassword = PasswordEncoder.encodePassword(customer.getPassword());
-            if(!PasswordDecoder.verifyPassword(existingCustomer.getPassword(), hashedPassword)) {
-                throw new IllegalStateException("Wrong email or password");
-            }
+            return PasswordDecoder.verifyPassword(existingCustomer.getPassword(), hashedPassword);
         } else {
             throw new IllegalStateException("User not found");
         }
