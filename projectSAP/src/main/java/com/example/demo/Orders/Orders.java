@@ -1,4 +1,4 @@
-package com.example.demo.Orders;
+package com.example.demo.orders;
 
 import jakarta.persistence.*;
 

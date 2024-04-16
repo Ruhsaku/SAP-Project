@@ -1,7 +1,7 @@
-package com.example.demo.Customer;
+package com.example.demo.customer;
 
-import com.example.demo.PasswordHash.PasswordDecoder;
-import com.example.demo.PasswordHash.PasswordEncoder;
+import com.example.demo.passwordhash.PasswordDecoder;
+import com.example.demo.passwordhash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;

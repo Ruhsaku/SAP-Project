@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-@RequestMapping("/")
+@RequestMapping("/login")
 @EnableAsync
 public class ProjectSapApplication {
 

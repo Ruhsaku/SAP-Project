@@ -1,4 +1,4 @@
-package com.example.demo.Web;
+package com.example.demo.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +20,9 @@ public class WebController {
     public String cart(){
         return "cart";
     }
-    @RequestMapping("/employeeHome")
-    public String employeeHome(){
-        return "employeeHome";
+    @RequestMapping("/dashboard")
+    public String dashboard(){
+        return "dashboard";
     }
     @RequestMapping("/")
     public String login(){

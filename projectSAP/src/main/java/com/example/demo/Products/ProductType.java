@@ -1,4 +1,4 @@
-package com.example.demo.Products;
+package com.example.demo.products;
 
 public enum ProductType {
     MEN,

@@ -1,4 +1,4 @@
-package com.example.demo.Employee;
+package com.example.demo.employee;
 
 import jakarta.persistence.*;
 import java.util.Objects;
