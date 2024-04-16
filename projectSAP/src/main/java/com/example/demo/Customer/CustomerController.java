@@ -24,26 +24,29 @@ public class CustomerController {
     public String registerNewCustomer(@RequestBody Customer customer) {
         try {
             customerService.addNewCustomer(customer);
-            return "Registration successful. Please login.";
+            System.out.println("Registration successful. Please login.");
+            return "redirect:/login";
         } catch (IllegalStateException e) {
-            return "Registration failed. Please try again.";
+            System.err.println("Registration failed. Please try again.");
+            return "redirect:/register/customer";
         }
     }
 
-    //@PostMapping("/")
-    // @ResponseBody
+    @PostMapping("/login/customer")
+    @ResponseBody
     public String loginCustomer(@RequestBody Customer customer) {
         try {
             boolean loginSuccessful = customerService.login(customer);
             if (loginSuccessful) {
-                return "Login successful.";
+                System.out.println("Login successful.");
+                return "redirect:/home";
             } else {
-                return "Invalid email or password. Please try again.";
+                System.err.println("Invalid email or password. Please try again.");
+                return "redirect:/login/customer";
             }
-            // return "redirect:/home";
         } catch (IllegalStateException e) {
-            return "Login failed. Please try again.";
-            // return "redirect:/?error";
+            System.err.println("Login failed. Please try again.");
+            return "redirect:/login/customer";
         }
     }
 }
