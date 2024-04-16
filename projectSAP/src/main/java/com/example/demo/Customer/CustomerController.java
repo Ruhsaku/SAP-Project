@@ -1,4 +1,4 @@
-package com.example.demo.Customer;
+package com.example.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -20,8 +19,8 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    //@PostMapping("/register")
-    //@ResponseBody
+    @PostMapping("/register/customer")
+    @ResponseBody
     public String registerNewCustomer(@RequestBody Customer customer) {
         try {
             customerService.addNewCustomer(customer);

@@ -1,12 +1,12 @@
-package com.example.demo.Employee;
+package com.example.demo.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -25,7 +25,8 @@ public class EmployeeController {
         employeeService.saveEmployees(employees);
     }
 
-    //@PostMapping
+    @PostMapping(path = "/register/employee",
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public void registerNewEmployee(@RequestBody Employee employee) {
         employeeService.addNewEmployee(employee);
     }
@@ -36,14 +37,16 @@ public class EmployeeController {
         try {
             boolean loginSuccessful = employeeService.login(employee);
             if (loginSuccessful) {
-                return "Login successful.";
+                // return "Login successful.";
+                return "home";
             } else {
-                return "Invalid email or password. Please try again.";
+                // return "Invalid email or password. Please try again.";
+                return "Invalid email";
             }
             // return "redirect:/home";
         } catch (IllegalStateException e) {
-            return "Login failed. Please try again.";
-            // return "redirect:/?error";
+            // return "Login failed. Please try again.";
+            return "redirect:/?error";
         }
     }
 }
