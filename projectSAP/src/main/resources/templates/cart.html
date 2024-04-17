@@ -58,25 +58,33 @@
 
 <div class="container">
     <h1>Your Shopping Cart</h1>
-    <!-- Display cart items here -->
     <div class="cart-item">
         <img src="perfume1.jpg" alt="Perfume 1">
         <h3>Perfume 1</h3>
-        <p>$50</p>
-        <!-- Add more details about the item, such as quantity, etc. -->
-    </div>
-    <!-- Repeat the above structure for each item in the cart -->
-    <!-- Example: -->
-    <!-- <div class="cart-item">
-             Details of the second item...
-         </div> -->
-    <!-- End of item display -->
-
+        <p>$49.99</p>
+        <p>Quantity: 1</p> </div>
     <div class="checkout">
-        <p>Total: $XXX</p> <!-- Display total price -->
-        <button>Checkout</button> <!-- Button to proceed to checkout -->
-    </div>
+        <p>Total: $<span id="totalPrice">0</span></p> <button>Checkout</button> </div>
 </div>
+
+<script>
+    // Get all price elements
+    const priceElements = document.querySelectorAll('.cart-item p:nth-child(2)');
+
+    // Calculate total price
+    function calculateTotalPrice() {
+      let totalPrice = 0;
+      priceElements.forEach(priceElement => {
+        const price = parseFloat(priceElement.textContent.slice(1)); // Extract price value
+        totalPrice += price;
+      });
+      document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    }
+
+    // Call calculateTotalPrice on page load
+    calculateTotalPrice();
+</script>
 
 </body>
 </html>
+
