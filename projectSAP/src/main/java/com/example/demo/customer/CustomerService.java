@@ -33,10 +33,6 @@ public class CustomerService {
             customer.setPassword(PasswordEncoder.encodePassword(customer.getPassword()));
             customerRepository.save(customer);
         }
-//        customer.setFirstName(customer.getFirstName());
-//        customer.setLastName(customer.getLastName());
-//        customer.setEmail(customer.getEmail());
-//        customer.setUsername(customer.getUsername());
     }
 
     public boolean login(Customer customer) {
