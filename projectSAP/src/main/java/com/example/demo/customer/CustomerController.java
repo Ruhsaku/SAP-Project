@@ -1,7 +1,10 @@
 package com.example.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -32,7 +35,8 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/login/customer")
+
+    @PostMapping(value = "/login/customer")
     @ResponseBody
     public String loginCustomer(@RequestBody Customer customer) {
         try {

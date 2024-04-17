@@ -54,19 +54,43 @@
 
 <div class="container">
     <h2>Login</h2>
-    <form action="/home" method="post">
+    <form action="/login/customer" method="post">
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" required>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <input type="submit" value="Login">
+        <input type="button" value="Login" onclick="submitForm()">
     </form>
     <div class="register-link">
         <p>If you are not registered, <a href="/register">register here</a>.</p>
     </div>
 </div>
+<script>
+    function submitForm() {
+        var formData = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
 
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/login/customer', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Login successful, redirect to home page
+                    window.location.href = '/home';
+                } else {
+                    // Login failed
+                    console.error('Login failed');
+                    window.location.href = '/login/customer';
+                }
+            }
+        };
+        xhr.send(JSON.stringify(formData));
+    }
+</script>
 </body>
 </html>
