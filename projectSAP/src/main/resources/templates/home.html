@@ -11,7 +11,7 @@
             padding: 0;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
@@ -25,8 +25,9 @@
         .products {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: flex-start;
             margin-top: 20px;
+
         }
         .product {
             width: calc(33.33% - 20px);
@@ -36,6 +37,8 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            margin-left:7px;
+            margin-right:7px;
         }
         .product img {
             width: 100%;
@@ -58,15 +61,18 @@
             display: block;
             width: 100%;
             padding: 10px 0;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+            background-color: #04AA6D;
+            color: black;
+            border: 2px solid #04AA6D;
+            border-color:
             border-radius: 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .product button:hover {
-            background-color: #0056b3;
+            background-color: #097969;
+            color: white;
+            border: 2px solid #097969;
         }
         .logout {
             text-align: center;
@@ -76,22 +82,135 @@
             color: #007bff;
             text-decoration: none;
         }
+        .category{
+            margin-left:7px;
+        }
+        .addCart{
+            margin-top: 5px;
+
+        }
+        .addCart:hover{
+            background-color: #04AA6D;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Welcome to the Perfume Store!</h1>
+    <div class="men">
+        <h2 class="category">Male perfumes</h2>
     <div class="products">
+
         <div class="product">
-            <img src="perfume1.jpg" alt="Perfume 1">
+            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/-/1-6438825ac1a8405549c5977fb32adf2f-cbd9c16236290a405dfa193961c67923.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Perfume 1</h3>
-                <p>$50</p>
-                <button type="submit">Add to Cart</button>
+                <h3>Acqua di Gio</h3>
+                <p>$74.99</p>
+                <p>Quantity: 15</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.parfimo.bg/data/cache/thumb_min500_max1000-min500_max1000-12/products/904207/1534936728/chanel-bleu-de-chanel-parfyum-za-mazhe-100-ml-245241.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Bleu de Chanel</h3>
+                <p>$89.99</p>
+                <p>Quantity: 10</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://www.sephora.com/productimages/sku/s1565910-main-zoom.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Tom Ford Oud Wood</h3>
+                <p>$129.99</p>
+                <p>Quantity: 20</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://cdn2.parfumdreams.de/image/product/53482-77576-1-0.webp?box=528" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Sauvage </h3>
+                <p>$94.99</p>
+                <p>Quantity: 7</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://essenza-nobile.de/media/image/product/240728/md/creed-aventus-en.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Creed Aventus</h3>
+                <p>$109.99</p>
+                <p>Quantity: 12</p>
+                <button class="addCart" type="submit">Add to Cart</button>
             </div>
         </div>
         <!-- Repeat the product card structure for other products -->
+    </div>
+</div>
+    <div class="women">
+        <h2 class="category">Female perfumes</h2>
+        <div class="products">
+            <div class="product">
+                <img src="https://www.koku.bg/buxus/images/products/3327838_6615641640171321.jpg" alt="Perfume 1">
+                <div class="product-details">
+                    <h3>Miss Dior</h3>
+                    <p>$79.99</p>
+                    <p>Quantity: 15</p>
+                    <button class="addCart" type="submit">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Repeat the product card structure for other products -->
+
+        <div class="product">
+            <img src="https://www.sephora.com/productimages/sku/s43687-main-zoom.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Channel No.5</h3>
+                <p>$99.99</p>
+                <p>Quantity: 25</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_3321_1.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Black Opium</h3>
+                <p>$84.99</p>
+                <p>Quantity: 30</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/-/1-0e89bd97e23d359b9853154f7519a22a.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>J'adore</h3>
+                <p>$99.99</p>
+                <p>Quantity: 14</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/_/1_4590.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>La Vie Est Belle</h3>
+                <p>$69.99</p>
+                <p>Quantity: 18</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_6289_1.jpg" alt="Perfume 1">
+            <div class="product-details">
+                <h3>Gucci Bloom</h3>
+                <p>$99.99</p>
+                <p>Quantity: 8</p>
+                <button class="addCart" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        </div>
     </div>
     <div class="logout">
         <p><a href="/cart">Cart</a></p>
