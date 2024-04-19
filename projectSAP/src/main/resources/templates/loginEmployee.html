@@ -66,8 +66,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="button" class="login-button" onclick="submitForm()">Login</button>
         <p id="error-message"></p>
+        <button type="button" class="login-button" onclick="submitForm()">Login</button>
+
     </form>
     <div class="back-link">
         <p><a href="/">Back to Customer Login</a></p>
@@ -92,7 +93,7 @@
                 } else {
                     // Login failed, display error message
                     console.error('Login failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Incorrect username or password';
+                    document.getElementById('error-message').innerText = 'Invalid username or password!';
                 }
             }
         };

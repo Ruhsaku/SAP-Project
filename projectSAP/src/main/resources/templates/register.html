@@ -33,6 +33,15 @@
             border-radius: 3px;
             box-sizing: border-box;
         }
+        .register-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
         input[type="submit"] {
             width: 100%;
             padding: 10px;
@@ -72,8 +81,8 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <input type="button" value="Register" onclick="submitForm()">
         <p id="error-message"></p>
+        <button type="button" class="register-button" onclick="submitForm()">Register</button>
     </form>
 </div>
 
@@ -100,8 +109,8 @@
                     console.log("Registration successful, redirect to login page")
                 } else {
                     // Login failed, display error message
-                     console.error('Register failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Incorrect username or password';
+                    console.error('Register failed:', xhr.status, xhr.responseText);
+                    document.getElementById('error-message').innerText = 'Invalid username or password!';
                 }
             }
         };
