@@ -123,7 +123,7 @@
         var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formRegisterData.password)) {
             isValid = false;
-            errorMessage += "Password must be at least 8 characters and include a lowercase letter, uppercase letter, and number.\n";
+            errorMessage += "- Password must be at least 8 characters and include a lowercase letter, uppercase letter, and number.\n";
         }
 
         // If validation fails, display error message and prevent form submission
@@ -144,13 +144,11 @@
                     console.log("Registration successful, redirect to login page")
                 } else {
                     // Login failed, display error message
-<<<<<<< HEAD
-                     console.error('Register failed:', xhr.status, xhr.responseText);
-                   document.getElementById('error-message').innerText = "Invalid data";
-=======
+<!--                     console.error('Register failed:', xhr.status, xhr.responseText);-->
+<!--                   document.getElementById('error-message').innerText = "Invalid data";-->
                     console.error('Register failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Invalid username or password!';
->>>>>>> a363988920a7781ed62c93bca8e24a4ee8eac91e
+                    document.getElementById('error-message').innerText = 'Email is taken';
+
                 }
             }
 

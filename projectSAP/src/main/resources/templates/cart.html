@@ -61,7 +61,7 @@
     <div class="cart-item">
         <img src="perfume1.jpg" alt="Perfume 1">
         <h3>Perfume 1</h3>
-        <p>$49.99</p>
+        <p class="price">$49.99</p>
         <p>Quantity: 1</p> </div>
     <div class="checkout">
         <p>Total: $<span id="totalPrice">0</span></p> <button>Checkout</button> </div>
@@ -69,7 +69,7 @@
 
 <script>
     // Get all price elements
-    const priceElements = document.querySelectorAll('.cart-item p:nth-child(2)');
+    const priceElements = document.querySelectorAll('.price');
 
     // Calculate total price
     function calculateTotalPrice() {
