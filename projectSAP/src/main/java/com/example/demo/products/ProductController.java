@@ -8,21 +8,24 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
+    private final ProductService productService;
 
     @Autowired
-    private ProductService productService;
+    public ProductsController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping
     public Products createProduct(@RequestBody Products product) {
         return productService.saveProduct(product);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Products> getProduct(@PathVariable Integer id) {
-        return productService.getProductById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<Products> getProduct(@PathVariable Integer id) {
+//        return productService.getProductById(id);
+//    }
 
-    @GetMapping
+    @GetMapping(path = "/dashboard/getAllProducts")
     public List<Products> getAllProducts() {
         return productService.getAllProducts();
     }
