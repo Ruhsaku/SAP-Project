@@ -86,7 +86,42 @@
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         };
-        
+        var isValid = true;
+        var errorMessage = "";
+
+         // Name Validation
+         var nameRegex = /^[a-zA-Z\s\-']+$/;
+         if (!nameRegex.test(formRegisterData.firstName) || !nameRegex.test(formRegisterData.lastName)) {
+           isValid = false;
+           errorMessage += "- Invalid name format. Please use letters, spaces, hyphens or apostrophes.\n";
+         }
+
+         // Username Validation
+         var usernameRegex = /^[0-9a-zA-Z_\s\-']+$/;
+         if (!usernameRegex.test(formRegisterData.username)) {
+           isValid = false;
+           errorMessage += "- Invalid username format. Please use letters, numbers, periods, or underscores.\n";
+         }
+
+         // Email Validation
+         var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+         if (!emailRegex.test(formRegisterData.email)) {
+           isValid = false;
+           errorMessage += "- Invalid email format.\n";
+         }
+
+          // Password Validation (adjust regex as needed)
+        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordRegex.test(formRegisterData.password)) {
+            isValid = false;
+            errorMessage += "Password must be at least 8 characters and include a lowercase letter, uppercase letter, and number.\n";
+        }
+
+        // If validation fails, display error message and prevent form submission
+        if (!isValid) {
+            document.getElementById('error-message').innerText = errorMessage;
+            return; // Prevent form submission
+        }
 
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '/register', true);
@@ -101,11 +136,15 @@
                 } else {
                     // Login failed, display error message
                      console.error('Register failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Incorrect username or password';
+                   document.getElementById('error-message').innerText = "Invalid data";
                 }
             }
+
         };
         xhr.send(JSON.stringify(formRegisterData));
+        //Redirect to login page after successful register
+        //window.location.href = '/';
+
     }
 </script>
 
