@@ -25,6 +25,15 @@
         .product-form {
             margin-top: 20px;
         }
+        .functionality-button {
+            width: 15%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -56,6 +65,18 @@
 
 <div class="container">
     <h1>Employee Dashboard</h1>
+    <div class="product-form">
+        <h2>Get All Products</h2>
+        <form action="/dashboard/getAllProducts" method="GET">
+            <div class="form-group">
+                <button type="button" class="functionality-button" onclick="getAllProducts()">Get All Products</button>
+                <div id="productList"></div>
+                <button id="clearButton" style="display:none" type="button"
+                        class="functionality-button" onclick="clearProductList()">Clear</button>
+            </div>
+        </form>
+    </div>
+
     <div class="product-form">
         <h2>Add Product</h2>
         <form action="/addProduct" method="post">
@@ -123,6 +144,52 @@
         </form>
     </div>
 </div>
+
+<script>
+    // Function to fetch all products and display them
+    function getAllProducts() {
+        // Make AJAX request to fetch all products
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/dashboard/getAllProducts");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE)
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    try {
+                        var products = JSON.parse(xhr.responseText);
+                        // Update HTML to display products
+                        var productListDiv = document.getElementById("productList");
+                        productListDiv.innerHTML = "<h3>All Products:</h3>";
+                        products.forEach(function(product) {
+                            var productDiv = document.createElement("div");
+                            productDiv.classList.add("product");
+                            productDiv.innerHTML = "<p>ID: " + product.productId + "</p>"
+                                + "<p>Name: " + product.productName + "</p>"
+                                + "<p>Price: $" + product.price + "</p>";
+                            productListDiv.appendChild(productDiv);
+                        });
+                        // Show the button "Clear"
+                        document.getElementById('clearButton').style.display = 'inline';
+                    } catch (error) {
+                        console.error("Error parsing JSON: " + error);
+                    }
+                // Parse JSON response
+
+            } else {
+                console.error("Error fetching products: " + xhr.status);
+            }
+
+        };
+        xhr.send();
+    }
+    // Function to clear the product list and hide the Clear Products button
+    function clearProductList() {
+        const productListDiv = document.getElementById('productList');
+        productListDiv.innerHTML = ''; // Clear the product list
+        document.getElementById('clearButton').style.display = 'none'; // Hide the Clear Products button
+    }
+</script>
+
 
 </body>
 </html>

@@ -3,26 +3,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/products")
-public class ProductsController {
+public class ProductController {
+    private final ProductService productService;
 
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping
     public Products createProduct(@RequestBody Products product) {
         return productService.saveProduct(product);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Products> getProduct(@PathVariable Integer id) {
-        return productService.getProductById(id);
-    }
+//    @GetMapping("/{id}")
+//    public Optional<Products> getProduct(@PathVariable Integer id) {
+//        return productService.getProductById(id);
+//    }
 
-    @GetMapping
+    @GetMapping(path = "/dashboard/getAllProducts")
     public List<Products> getAllProducts() {
         return productService.getAllProducts();
     }

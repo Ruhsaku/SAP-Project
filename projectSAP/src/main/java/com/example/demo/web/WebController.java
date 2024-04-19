@@ -33,4 +33,8 @@ public class WebController {
     public String loginEmployee(){
         return "loginEmployee";
     }
+    @RequestMapping("/dashboard/getAllProducts")
+    public String dashboardGetAllProducts(){
+        return "dashboard";
+    }
 }
