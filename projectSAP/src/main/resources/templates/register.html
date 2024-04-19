@@ -51,7 +51,7 @@
 
 <div class="container">
     <h2>Register</h2>
-    <form action="/register/customer" method="POST">
+    <form action="/register" method="POST">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
@@ -73,7 +73,7 @@
 
 <script>
     function submitForm() {
-        var formData = {
+        var formRegisterData = {
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             username: document.getElementById('username').value,
@@ -82,21 +82,22 @@
         };
 
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/register/customer', true);
+        xhr.open('POST', '/register', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Registration successful, redirect to login page
-                    window.location.href = '/';
+                    var responseRegisterData = JSON.parse(xhr.responseText);
+                    window.location.href = responseRegisterData.redirectUrl;
+                    console.log("Registration successful, redirect to login page")
                 } else {
                     // Registration failed
                     console.error('Registration failed');
-                    //window.location.href = '/register/customer';
                 }
             }
         };
-        xhr.send(JSON.stringify(formData));
+        xhr.send(JSON.stringify(formRegisterData));
     }
 </script>
 

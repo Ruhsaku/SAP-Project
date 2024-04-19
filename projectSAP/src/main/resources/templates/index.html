@@ -54,7 +54,7 @@
 
 <div class="container">
     <h2>Login</h2>
-    <form action="/login/customer" method="post">
+    <form action="/" method="post">
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" required>
 
@@ -69,27 +69,28 @@
 </div>
 <script>
     function submitForm() {
-        var formData = {
+        var formLoginData = {
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         };
 
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/login/customer', true);
+        xhr.open('POST', '/', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Login successful, redirect to home page
-                    window.location.href = '/home';
+                    var responseLoginData = JSON.parse(xhr.responseText);
+                    window.location.href = responseLoginData.redirectUrl;
+                    console.log('Login successful');
                 } else {
                     // Login failed
                     console.error('Login failed');
-                    window.location.href = '/login/customer';
                 }
             }
         };
-        xhr.send(JSON.stringify(formData));
+        xhr.send(JSON.stringify(formLoginData));
     }
 </script>
 </body>
