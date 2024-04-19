@@ -28,4 +28,9 @@ public class WebController {
     public String login(){
         return "index";
     }
+
+    @RequestMapping("/loginEmployee")
+    public String loginEmployee(){
+        return "loginEmployee";
+    }
 }

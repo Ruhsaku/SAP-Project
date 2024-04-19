@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Employee Login</h2>
+    <form action="/login/employee" method="post">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="login-button" onclick="submitForm()">Login</button>
+    </form>
+    <div class="back-link">
+        <p><a href="/">Back to Customer Login</a></p>
+    </div>
+</div>
+<script>
+    // JavaScript for form submission
+    function submitForm() {
+        var formData = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/login/customer', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Login successful, redirect to home page
+                    window.location.href = '/dashboard';
+                } else {
+                    // Login failed
+                    console.error('Login failed');
+                    window.location.href = '/login/customer';
+                }
+            }
+        };
+        xhr.send(JSON.stringify(formData));
+    }
+
+    // Function to redirect to business login page
+    function redirectToBusinessLogin() {
+        window.location.href = '/loginEmployee';
+    }
+</script>
+</body>
+</html>
