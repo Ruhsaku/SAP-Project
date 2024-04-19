@@ -45,6 +45,11 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        #error-message{
+            text-align:center;
+            color: red;
+            margin-top:15px;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +73,7 @@
         <input type="password" id="password" name="password" required>
 
         <input type="button" value="Register" onclick="submitForm()">
+        <p id="error-message"></p>
     </form>
 </div>
 
@@ -80,6 +86,7 @@
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         };
+        
 
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '/register', true);
@@ -92,8 +99,9 @@
                     window.location.href = responseRegisterData.redirectUrl;
                     console.log("Registration successful, redirect to login page")
                 } else {
-                    // Registration failed
-                    console.error('Registration failed');
+                    // Login failed, display error message
+                     console.error('Register failed:', xhr.status, xhr.responseText);
+                    document.getElementById('error-message').innerText = 'Incorrect username or password';
                 }
             }
         };

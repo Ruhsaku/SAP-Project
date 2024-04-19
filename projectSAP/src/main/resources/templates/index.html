@@ -48,6 +48,11 @@
             text-align: center;
             margin-top: 15px;
         }
+        #error-message{
+            text-align:center;
+            margin-top: 15px;
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +67,7 @@
         <input type="password" id="password" name="password" required>
 
         <button type="button" class="login-button" onclick="submitForm()">Login</button>
+        <p id="error-message"></p>
     </form>
     <div class="register-link">
         <p>If you are not registered, <a href="/register">register here</a>.</p>
@@ -81,19 +87,20 @@
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '/', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
+         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    // Login successful, redirect to home page
-                    var responseLoginData = JSON.parse(xhr.responseText);
-                    window.location.href = responseLoginData.redirectUrl;
-                    console.log('Login successful');
-                } else {
-                    // Login failed
-                    console.error('Login failed');
-                }
+                // Login successful, redirect to home page (unchanged)
+                var responseLoginData = JSON.parse(xhr.responseText);
+                window.location.href = responseLoginData.redirectUrl;
+                console.log('Login successful');
+            } else {
+                // Login failed, display error message
+                console.error('Login failed:', xhr.status, xhr.responseText);
+                document.getElementById('error-message').innerText = 'Incorrect username or password';
             }
-        };
+     }
+ };
         xhr.send(JSON.stringify(formLoginData));
     }
 

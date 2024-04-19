@@ -96,4 +96,4 @@ VALUES
 INSERT into employee (username, password, email, first_name, last_name, position, salary, contact_number)
 VALUES ("MYovchev", "Kivim3456", "myovchev@per-store.com", "Martin", "Yovchev", "developer", 55000.00, "0891234567"),
 ("SMitev", "Hili1234", "stmitev@per-store.com", "Stanislav", "Mitev", "sys admin", 45000.00, "0897654321"),
-("ETonev", "12Plok34", "etonev@per-store.com", "Etien", "Tonev", "developer", 35000.00, "0891111111");
+    ("ETonev", "12Plok34", "etonev@per-store.com", "Etien", "Tonev", "developer", 35000.00, "0888864288");
