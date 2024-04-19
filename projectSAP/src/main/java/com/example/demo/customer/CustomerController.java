@@ -1,6 +1,8 @@
 package com.example.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,35 +24,38 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
-    @PostMapping("/register/customer")
+    @PostMapping("/register")
     @ResponseBody
-    public String registerNewCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<?> registerNewCustomer(@RequestBody Customer customer) {
         try {
             customerService.addNewCustomer(customer);
             System.out.println("Registration successful. Please login.");
-            return "redirect:/login";
+            return ResponseEntity.ok().body("{\"redirectUrl\": \"/\"}");
         } catch (IllegalStateException e) {
             System.err.println("Registration failed. Please try again.");
-            return "redirect:/register/customer";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\": \"Registration failed\"}");
         }
     }
 
-
-    @PostMapping(value = "/login/customer")
+    @PostMapping(value = "/")
     @ResponseBody
-    public String loginCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) {
         try {
             boolean loginSuccessful = customerService.login(customer);
             if (loginSuccessful) {
-                System.out.println("Login successful.");
-                return "redirect:/home";
-            } else {
+                System.out.println("Login successful. Have fun!");
+                return ResponseEntity.ok().body("{\"redirectUrl\": \"/home\"}");
+            }
+            else {
                 System.err.println("Invalid email or password. Please try again.");
-                return "redirect:/login/customer";
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("{\"error\": \"Login failed\"}");
             }
         } catch (IllegalStateException e) {
             System.err.println("Login failed. Please try again.");
-            return "redirect:/login/customer";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("{\"error\": \"Login failed\"}");
         }
     }
 }

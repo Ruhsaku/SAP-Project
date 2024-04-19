@@ -25,20 +25,20 @@ public class EmployeeController {
         employeeService.saveEmployees(employees);
     }
 
-    @PostMapping(path = "/register/employee",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void registerNewEmployee(@RequestBody Employee employee) {
-        employeeService.addNewEmployee(employee);
-    }
+//    @PostMapping(path = "/register/employee",
+//            consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public void registerNewEmployee(@RequestBody Employee employee) {
+//        employeeService.addNewEmployee(employee);
+//    }
 
-    @PostMapping("/")
+    @PostMapping("/index/employee")
     @ResponseBody
     public String loginEmployee(@RequestBody Employee employee) {
         try {
             boolean loginSuccessful = employeeService.login(employee);
             if (loginSuccessful) {
                 // return "Login successful.";
-                return "home";
+                return "redirect:/dashboard";
             } else {
                 // return "Invalid email or password. Please try again.";
                 return "Invalid email";

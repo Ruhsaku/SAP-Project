@@ -37,13 +37,8 @@ public class CustomerService {
 
     public boolean login(Customer customer) {
         Optional<Customer> customerOptional = customerRepository
-                .findCustomerByEmail(customer.getEmail());
-        if (customerOptional.isPresent()) {
-            Customer existingCustomer = customerOptional.get();
-            String hashedPassword = PasswordEncoder.encodePassword(customer.getPassword());
-            return PasswordDecoder.verifyPassword(existingCustomer.getPassword(), hashedPassword);
-        } else {
-            throw new IllegalStateException("User not found");
-        }
+                .findCustomerByEmailAndPassword(customer.getEmail(),
+                        PasswordEncoder.encodePassword(customer.getPassword()));
+        return customerOptional.isPresent();
     }
 }
