@@ -1,4 +1,4 @@
---### Code for the Database ###
+-- ### Code for the Database ### --
 DROP DATABASE IF EXISTS OnlineStore;
 CREATE DATABASE OnlineStore;
 USE OnlineStore;
@@ -6,7 +6,7 @@ USE OnlineStore;
 CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL, -- hashed password SHA2(str, hash_length(bits));
+    password VARCHAR(255) NOT NULL,
 -- Security Hash Algorithm 2
     email VARCHAR(100) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
