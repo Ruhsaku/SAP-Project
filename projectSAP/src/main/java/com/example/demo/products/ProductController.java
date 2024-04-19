@@ -3,15 +3,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/products")
-public class ProductsController {
+public class ProductController {
     private final ProductService productService;
 
     @Autowired
-    public ProductsController(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
