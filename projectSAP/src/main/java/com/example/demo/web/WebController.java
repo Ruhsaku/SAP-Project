@@ -29,7 +29,7 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping("/loginEmployee")
+    @RequestMapping("/login/employee")
     public String loginEmployee(){
         return "loginEmployee";
     }

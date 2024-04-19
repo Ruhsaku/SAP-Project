@@ -11,4 +11,5 @@ public interface EmployeeRepository
     // SELECT * FROM student WHERE email = ?;
     // @Query("SELECT e FROM Employee e WHERE e.email = ?1")
     Optional<Employee> findEmployeeByEmail(String email);
+    Optional<Employee> findEmployeeByEmailAndPassword(String email, String password);
 }

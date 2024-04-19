@@ -1,6 +1,5 @@
 package com.example.demo.employee;
 
-import com.example.demo.passwordhash.PasswordDecoder;
 import com.example.demo.passwordhash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,13 +30,8 @@ public class EmployeeService {
 
     public boolean login(Employee employee) {
         Optional<Employee> employeeOptional = employeeRepository
-                .findEmployeeByEmail(employee.getEmail());
-        if (employeeOptional.isPresent()) {
-            Employee existingEmployee = employeeOptional.get();
-            String hashedPassword = PasswordEncoder.encodePassword(employee.getPassword());
-            return PasswordDecoder.verifyPassword(existingEmployee.getPassword(), hashedPassword);
-        } else {
-            throw new IllegalStateException("User not found");
-        }
+                .findEmployeeByEmailAndPassword(
+                        employee.getEmail(), employee.getPassword());
+        return employeeOptional.isPresent();
     }
 }

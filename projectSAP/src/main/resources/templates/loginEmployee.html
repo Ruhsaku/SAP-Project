@@ -61,7 +61,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit" class="login-button" onclick="submitForm()">Login</button>
+        <button type="button" class="login-button" onclick="submitForm()">Login</button>
     </form>
     <div class="back-link">
         <p><a href="/">Back to Customer Login</a></p>
@@ -76,7 +76,7 @@
         };
 
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/login/customer', true);
+        xhr.open('POST', '/login/employee', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -86,16 +86,10 @@
                 } else {
                     // Login failed
                     console.error('Login failed');
-                    window.location.href = '/login/customer';
                 }
             }
         };
         xhr.send(JSON.stringify(formData));
-    }
-
-    // Function to redirect to business login page
-    function redirectToBusinessLogin() {
-        window.location.href = '/loginEmployee';
     }
 </script>
 </body>

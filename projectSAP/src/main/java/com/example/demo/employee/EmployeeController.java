@@ -1,8 +1,12 @@
 package com.example.demo.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -31,22 +35,23 @@ public class EmployeeController {
 //        employeeService.addNewEmployee(employee);
 //    }
 
-    @PostMapping("/index/employee")
+    @PostMapping("/login/employee")
     @ResponseBody
-    public String loginEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<?> loginEmployee(@RequestBody Employee employee) {
         try {
             boolean loginSuccessful = employeeService.login(employee);
             if (loginSuccessful) {
-                // return "Login successful.";
-                return "redirect:/dashboard";
+                System.out.println("Login successful. Let's work!");
+                return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
             } else {
-                // return "Invalid email or password. Please try again.";
-                return "Invalid email";
+                System.err.println("Invalid email or password. Please try again.");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("{\"error\": \"Login failed\"}");
             }
-            // return "redirect:/home";
         } catch (IllegalStateException e) {
-            // return "Login failed. Please try again.";
-            return "redirect:/?error";
+            System.err.println("Login failed. Please try again.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("{\"error\": \"Login failed\"}");
         }
     }
 }
