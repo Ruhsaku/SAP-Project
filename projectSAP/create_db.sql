@@ -6,12 +6,20 @@ USE OnlineStore;
 CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
+--     it is not safe to store sensitive data as strings. prefer byte arrays
+--     see https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords
+--     applicable for all instances of this issue in the file
     password VARCHAR(255) NOT NULL,
 -- Security Hash Algorithm 2
+--     what if the email is longer than 100 symbols?
     email VARCHAR(100) NOT NULL,
+--     what if the names are longer than 100 symbols?
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
+--     this name is ambiguous. position of what? without context it's hard to understand what this field signifies
     position VARCHAR(100) NOT NULL,
+--     see https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
+--     on why not to store currency as a floating point variable
     salary DOUBLE NOT NULL,
     contact_number VARCHAR(30) NOT NULL
 );
@@ -29,18 +37,24 @@ CREATE TABLE Customer (
 
 CREATE TABLE Address (
     address_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+--     https://en.wikipedia.org/wiki/List_of_long_place_names
+--     50 symbols is sometimes not enough.
     city VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
+--     why isn't this a number?
     postal_code VARCHAR(20) NOT NULL,
+--     what if it exceeds 255 symbols?
     address_line1 VARCHAR(255) NOT NULL,
     address_line2 VARCHAR(255)
 );
 
 CREATE TABLE Products (
     product_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+--     what if I want to create a product with a longer name?
     product_name VARCHAR(100) NOT NULL,
     type ENUM('MEN', 'WOMEN') NOT NULL,
     quantity INT NOT NULL,
+--     see https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
     price DOUBLE NOT NULL,
     description TEXT
 );
@@ -59,6 +73,7 @@ CREATE TABLE OrdersProducts (
     order_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
+--     see https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
     total_price DOUBLE NOT NULL,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)

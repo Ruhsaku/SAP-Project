@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncoder {
 
+    // https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords
     public static String encodePassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -18,6 +19,7 @@ public class PasswordEncoder {
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            // Why is this comment left here? ChatGPT much?
             // Handle error or throw RuntimeException
             return null;
         }

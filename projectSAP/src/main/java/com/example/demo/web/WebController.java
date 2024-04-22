@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+// This controller name is ambiguous.
+// Rename to something that will better describe what this class is supposed to do.
 public class WebController {
 
     @RequestMapping("/home")

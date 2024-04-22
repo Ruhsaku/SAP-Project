@@ -1,5 +1,7 @@
 package com.example.demo.employee;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class EmployeeController {
@@ -19,6 +19,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    // Unused methods.
     //@GetMapping
     public List<Employee> getEmployees() {
         return employeeService.getEmployees();
@@ -29,6 +30,7 @@ public class EmployeeController {
         employeeService.saveEmployees(employees);
     }
 
+    // Why is this not deleted?
 //    @PostMapping(path = "/register/employee",
 //            consumes = MediaType.APPLICATION_JSON_VALUE)
 //    public void registerNewEmployee(@RequestBody Employee employee) {

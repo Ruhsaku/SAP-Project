@@ -1,5 +1,7 @@
 package com.example.demo.customer;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -19,13 +19,17 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    // Unused method.
     //@GetMapping
     public List<Customer> getCustomers() {
         return customerService.getCustomers();
     }
 
     @PostMapping("/register")
+    // It is redundant to add @ResponseBody to methods of a @RestController class. Remove them
     @ResponseBody
+    // Try to avoid using the wildcard template parameter "?".
+    // In this case, I understand why it's used but generally try to void returning 2 different types in one method.
     public ResponseEntity<?> registerNewCustomer(@RequestBody Customer customer) {
         try {
             customerService.addNewCustomer(customer);
@@ -38,6 +42,8 @@ public class CustomerController {
         }
     }
 
+    // POST / is for login? I don't like this API.
+    // Why not POST /login?
     @PostMapping(value = "/")
     @ResponseBody
     public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) {

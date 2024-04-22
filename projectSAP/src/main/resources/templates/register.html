@@ -119,6 +119,7 @@
            errorMessage += "- Invalid email format.\n";
          }
 
+         //ChatGPT much?
           // Password Validation (adjust regex as needed)
         var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formRegisterData.password)) {
@@ -144,6 +145,7 @@
                     console.log("Registration successful, redirect to login page")
                 } else {
                     // Login failed, display error message
+//                     Either uncomment this or delete it. Do not leave commented-out code.
 <!--                     console.error('Register failed:', xhr.status, xhr.responseText);-->
 <!--                   document.getElementById('error-message').innerText = "Invalid data";-->
                     console.error('Register failed:', xhr.status, xhr.responseText);

@@ -3,6 +3,7 @@ package com.example.demo.passwordhash;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+// Unused.
 public class PasswordDecoder {
 
     public static boolean verifyPassword(String password, String hashedPassword) {

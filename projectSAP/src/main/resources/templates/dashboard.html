@@ -67,6 +67,7 @@
     <h1>Employee Dashboard</h1>
     <div class="product-form">
         <h2>Get All Products</h2>
+<!--        Why are there both a form action and a button that do the same thing? -->
         <form action="/dashboard/getAllProducts" method="GET">
             <div class="form-group">
                 <button type="button" class="functionality-button" onclick="getAllProducts()">Get All Products</button>
@@ -148,6 +149,8 @@
 <script>
     // Function to fetch all products and display them
     function getAllProducts() {
+        // Why not use jQuery?
+
         // Make AJAX request to fetch all products
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "/dashboard/getAllProducts");

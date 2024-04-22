@@ -3,6 +3,7 @@ package com.example.demo.regexes;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// This class is unused. Why is it not deleted?
 public class RegisterRegexes {
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX_EMPLOYEE =
             Pattern.compile("^[A-Z0-9._%+-]+@(?i)\\bper-store.com\\b", Pattern.CASE_INSENSITIVE);
