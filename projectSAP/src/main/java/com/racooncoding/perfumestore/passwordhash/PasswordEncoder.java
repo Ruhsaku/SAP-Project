@@ -17,11 +17,7 @@ public class PasswordEncoder {
             }
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            // TODO proper exception handling
-            // Why is this comment left here? ChatGPT much?
-            // Handle error or throw RuntimeException
-            return null;
+            throw new RuntimeException("Error encoding password", e);
         }
     }
 }

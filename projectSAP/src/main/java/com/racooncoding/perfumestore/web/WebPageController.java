@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // TODO
 // This controller name is ambiguous.
 // Rename to something that will better describe what this class is supposed to do.
-public class WebController {
+public class WebPageController {
 
     @RequestMapping("/home")
     public String home(){

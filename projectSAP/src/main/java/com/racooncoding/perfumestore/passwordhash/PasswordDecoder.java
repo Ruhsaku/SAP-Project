@@ -18,9 +18,7 @@ public class PasswordDecoder {
             String hashedInputPassword = hexString.toString();
             return hashedInputPassword.equals(hashedPassword);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            // Handle error or throw RuntimeException
-            return false;
+            throw new RuntimeException("Error encoding password", e);
         }
     }
 }
