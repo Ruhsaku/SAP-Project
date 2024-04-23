@@ -60,7 +60,6 @@ CREATE TABLE OrdersProducts (
     order_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
---     see https://stackoverflow.com/questions/3730019/why-not-use-double-or-float-to-represent-currency
     total_price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id),
     FOREIGN KEY (product_id) REFERENCES Products(product_id)
