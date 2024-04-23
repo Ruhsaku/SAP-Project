@@ -144,8 +144,6 @@
                     console.log("Registration successful, redirect to login page")
                 } else {
                     // Login failed, display error message
-<!--                     console.error('Register failed:', xhr.status, xhr.responseText);-->
-<!--                   document.getElementById('error-message').innerText = "Invalid data";-->
                     console.error('Register failed:', xhr.status, xhr.responseText);
                     document.getElementById('error-message').innerText = 'Email is taken';
 
@@ -154,9 +152,6 @@
 
         };
         xhr.send(JSON.stringify(formRegisterData));
-        //Redirect to login page after successful register
-        //window.location.href = '/';
-
     }
 </script>
 
