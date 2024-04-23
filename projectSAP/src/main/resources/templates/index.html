@@ -59,7 +59,7 @@
 
 <div class="container">
     <h2>Login</h2>
-    <form action="/" method="post">
+    <form action="/login" method="post">
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" required>
 
@@ -86,7 +86,7 @@
         };
 
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/', true);
+        xhr.open('POST', '/login', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
          xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
