@@ -8,11 +8,11 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.racooncoding</groupId>
+	<artifactId>perfumestore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>projectSAP</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Online store project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
