@@ -94,6 +94,8 @@
             color: white;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -291,6 +293,12 @@
 
         </div>
     </div>
+    <div id="cart" style="display: none; position: fixed; right: 0; top: 50%; transform: translateY(-50%); background-color: white; padding: 10px; border: 1px solid #ddd; width: 300px;">
+        <h2>Cart</h2>
+        <div id="cart-items"></div>
+        <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
+        <a href="#">Checkout</a>
+    </div>
     <div class="logout">
         <p><a href="/cart">Cart</a></p>
         <p><a href="/login">Logout</a></p>
@@ -298,4 +306,43 @@
 </div>
 
 </body>
+<script>
+    $(document).ready(function() {
+      // Click event for "Add to Cart" button
+      $(".addCart").click(function(event) {
+        event.preventDefault(); // Prevent default form submit
+
+        // Get product information
+        var perfumeName = $(this).siblings(".product-details").find("h3").text();
+        var perfumePrice = $(this).siblings(".product-details").find("p").text().slice(1); // Extract price without '$'
+
+        // Create a cart item element
+        var cartItem = `<div class="cart-item">
+                          <p>${perfumeName}</p>
+                          <p>$${perfumePrice}</p>
+                          <button class="remove-item">Remove</button>
+                        </div>`;
+
+        // Add item to cart list
+        $("#cart-items").append(cartItem);
+
+        // Update cart total price (assuming single item quantity)
+        var currentTotal = parseFloat($("#cart-total-price").text());
+        $("#cart-total-price").text((currentTotal + parseFloat(perfumePrice)).toFixed(2));
+
+        // Show the cart
+        $("#cart").show();
+      });
+
+      // Click event for "Remove" button on cart item
+      $(document).on("click", ".remove-item", function() {
+        $(this).parent().remove(); // Remove the cart item element
+
+        // Update cart total price
+        var itemPrice = parseFloat($(this).siblings("p").text().slice(1));
+        var currentTotal = parseFloat($("#cart-total-price").text());
+        $("#cart-total-price").text((currentTotal - itemPrice).toFixed(2));
+      });
+    });
+</script>
 </html>
