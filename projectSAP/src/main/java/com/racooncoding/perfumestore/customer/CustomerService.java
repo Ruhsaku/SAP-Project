@@ -1,14 +1,12 @@
 package com.racooncoding.perfumestore.customer;
 
-import java.util.List;
 import java.util.Optional;
 
-import com.racooncoding.perfumestore.passwordhash.PasswordDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.racooncoding.perfumestore.passwordhash.PasswordEncoder;
+import com.racooncoding.perfumestore.passwordhash.PasswordDecoder;
 
 @Service
 public class CustomerService {
@@ -17,10 +15,6 @@ public class CustomerService {
     @Autowired
     public CustomerService (CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-    }
-
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
     }
 
     public void addNewCustomer(Customer customer) {

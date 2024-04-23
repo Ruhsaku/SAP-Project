@@ -1,8 +1,5 @@
 package com.racooncoding.perfumestore.customer;
 
-import java.util.List;
-
-import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class EmployeeController {
     private final EmployeeService employeeService;
@@ -18,22 +16,6 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
-    //@GetMapping
-    public List<Employee> getEmployees() {
-        return employeeService.getEmployees();
-    }
-
-    //@PostMapping("/saveAll")
-    public void saveEmployees(@RequestBody List<Employee> employees) {
-        employeeService.saveEmployees(employees);
-    }
-
-//    @PostMapping(path = "/register/employee",
-//            consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public void registerNewEmployee(@RequestBody Employee employee) {
-//        employeeService.addNewEmployee(employee);
-//    }
 
     @PostMapping("/login/employee")
     @ResponseBody
