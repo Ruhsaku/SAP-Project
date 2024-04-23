@@ -27,7 +27,10 @@ public class WebPageController {
     public String login(){
         return "index";
     }
-
+    @RequestMapping("/")
+    public String startServer(){
+        return "index";
+    }
     @RequestMapping("/login/employee")
     public String loginEmployee(){
         return "loginEmployee";
