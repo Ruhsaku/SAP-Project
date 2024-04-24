@@ -2,6 +2,9 @@ package com.racooncoding.perfumestore.products;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 @Entity
 @Table
 public class Products {
@@ -13,16 +16,17 @@ public class Products {
     @Column(name = "type")
     private ProductType productType;
     private Integer quantity;
-    private Double price;
+    @Column(name = "price", precision=10, scale=2, nullable = true)
+    private BigDecimal price;
     private String description;
 
     public Products() {}
 
-    public Products(String productName,
+    public Products(String description,
+                    BigDecimal price,
+                    String productName,
                     ProductType productType,
-                    Integer quantity,
-                    Double price,
-                    String description) {
+                    Integer quantity) {
         this.productName = productName;
         this.productType = productType;
         this.quantity = quantity;
@@ -34,7 +38,7 @@ public class Products {
                     String productName,
                     ProductType productType,
                     Integer quantity,
-                    Double price,
+                    BigDecimal price,
                     String description) {
         this.productId = productId;
         this.productName = productName;
@@ -76,11 +80,11 @@ public class Products {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -90,5 +94,30 @@ public class Products {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productType=" + productType +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Products products = (Products) o;
+        return Objects.equals(productId, products.productId) && Objects.equals(productName, products.productName) && productType == products.productType && Objects.equals(quantity, products.quantity) && Objects.equals(price, products.price) && Objects.equals(description, products.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, productType, quantity, price, description);
     }
 }

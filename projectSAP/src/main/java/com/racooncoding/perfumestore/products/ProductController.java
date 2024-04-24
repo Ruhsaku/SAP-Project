@@ -1,5 +1,8 @@
 package com.racooncoding.perfumestore.products;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +40,18 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Integer id) {
         productService.deleteProductById(id);
+    }
+
+    @PostMapping("/dashboard/addProduct")
+    public ResponseEntity<?> addNewProduct(@RequestBody Products products) {
+        try {
+            productService.addNewProduct(products);
+            System.out.println("Product added successfully");
+            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+        } catch (IllegalStateException e) {
+            System.err.println("Product adding failed. Please try again.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\": \"Product adding failed\"}");
+        }
     }
 }

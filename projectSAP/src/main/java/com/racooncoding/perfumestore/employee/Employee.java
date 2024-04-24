@@ -1,6 +1,8 @@
 package com.racooncoding.perfumestore.employee;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -15,9 +17,9 @@ public class Employee {
     private String username;
     private String password;
     private String email;
-    private Double salary;
+    private BigDecimal salary;
     private String contactNumber;
-    private String position;
+    private String position_at_store;
 
     public Employee() {
 
@@ -28,7 +30,7 @@ public class Employee {
                     String username,
                     String password,
                     String email,
-                    Double salary,
+                    BigDecimal salary,
                     String contactNumber,
                     String position) {
         this.firstName = firstName;
@@ -38,7 +40,7 @@ public class Employee {
         this.email = email;
         this.salary = salary;
         this.contactNumber = contactNumber;
-        this.position = position;
+        this.position_at_store = position;
     }
     public Employee(Integer employeeId,
                     String firstName,
@@ -46,7 +48,7 @@ public class Employee {
                     String username,
                     String password,
                     String email,
-                    Double salary,
+                    BigDecimal salary,
                     String contactNumber,
                     String position) {
         this.employeeId = employeeId;
@@ -57,7 +59,7 @@ public class Employee {
         this.email = email;
         this.salary = salary;
         this.contactNumber = contactNumber;
-        this.position = position;
+        this.position_at_store = position;
     }
 
 
@@ -109,11 +111,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
@@ -125,12 +127,12 @@ public class Employee {
         this.contactNumber = contactNumber;
     }
 
-    public String getPosition() {
-        return position;
+    public String getPosition_at_store() {
+        return position_at_store;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPosition_at_store(String position_at_store) {
+        this.position_at_store = position_at_store;
     }
 
     @Override
@@ -157,7 +159,7 @@ public class Employee {
                 ", email='" + email + '\'' +
                 ", salary=" + salary +
                 ", contactNumber='" + contactNumber + '\'' +
-                ", position='" + position + '\'' +
+                ", position='" + position_at_store + '\'' +
                 '}';
     }
 }

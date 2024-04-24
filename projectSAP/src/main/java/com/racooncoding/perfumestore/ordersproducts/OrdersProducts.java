@@ -2,6 +2,8 @@ package com.racooncoding.perfumestore.ordersproducts;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name =  "ordersproducts")
 public class OrdersProducts {
@@ -11,14 +13,14 @@ public class OrdersProducts {
     private Integer orderId;
     private Integer productId;
     private Integer quantity;
-    private Float totalPrice;
+    private BigDecimal totalPrice;
 
     public OrdersProducts() {}
 
     public OrdersProducts(Integer orderId,
                           Integer productId,
                           Integer quantity,
-                          Float totalPrice) {
+                          BigDecimal totalPrice) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
@@ -29,7 +31,7 @@ public class OrdersProducts {
                           Integer orderId,
                           Integer productId,
                           Integer quantity,
-                          Float totalPrice) {
+                          BigDecimal totalPrice) {
         this.orderProductId = orderProductId;
         this.orderId = orderId;
         this.productId = productId;
@@ -69,11 +71,11 @@ public class OrdersProducts {
         this.quantity = quantity;
     }
 
-    public Float getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Float totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

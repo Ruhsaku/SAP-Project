@@ -11,14 +11,14 @@ public class Address {
     private Integer addressId;
     private String city;
     private String state;
-    private String postalCode;
+    private Integer postalCode;
     private String addressLine1;
     private String addressLine2;
 
     public Address () {}
     public Address(String city,
                    String state,
-                   String postalCode,
+                   Integer postalCode,
                    String addressLine1,
                    String addressLine2) {
         this.city = city;
@@ -30,7 +30,7 @@ public class Address {
     public Address(Integer addressId,
                    String city,
                    String state,
-                   String postalCode,
+                   Integer postalCode,
                    String addressLine1,
                    String addressLine2) {
         this.addressId = addressId;
@@ -65,11 +65,11 @@ public class Address {
         this.state = state;
     }
 
-    public String getPostalCode() {
+    public Integer getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
+    public void setPostalCode(Integer postalCode) {
         this.postalCode = postalCode;
     }
 
