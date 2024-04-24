@@ -93,6 +93,13 @@
             background-color: #04AA6D;
             color: white;
         }
+        .cart-hide {
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
@@ -108,7 +115,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/-/1-6438825ac1a8405549c5977fb32adf2f-cbd9c16236290a405dfa193961c67923.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Acqua di Gio</h3>
+                <h3 class="productName">Acqua di Gio</h3>
                 <p>$74.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -117,7 +124,7 @@
         <div class="product">
             <img src="https://www.parfimo.bg/data/cache/thumb_min500_max1000-min500_max1000-12/products/904207/1534936728/chanel-bleu-de-chanel-parfyum-za-mazhe-100-ml-245241.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Bleu de Chanel</h3>
+                <h3 class="productName">Bleu de Chanel</h3>
                 <p>$89.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -126,7 +133,7 @@
         <div class="product">
             <img src="https://www.sephora.com/productimages/sku/s1565910-main-zoom.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Tom Ford Oud Wood</h3>
+                <h3 class="productName">Tom Ford Oud Wood</h3>
                 <p>$129.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -135,7 +142,7 @@
         <div class="product">
             <img src="https://cdn2.parfumdreams.de/image/product/53482-77576-1-0.webp?box=528" alt="Perfume 1">
             <div class="product-details">
-                <h3>Sauvage </h3>
+                <h3 class="productName">Sauvage </h3>
                 <p>$94.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -144,7 +151,7 @@
         <div class="product">
             <img src="https://essenza-nobile.de/media/image/product/240728/md/creed-aventus-en.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Creed Aventus</h3>
+                <h3 class="productName">Creed Aventus</h3>
                 <p>$109.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -153,7 +160,7 @@
         <div class="product">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqYccTtWrS2gDLXD2cRK9MZrGgN61FumGewtZUQXcKg&s" alt="Perfume 1">
             <div class="product-details">
-                <h3>Dior Fahrenheit</h3>
+                <h3 class="productName">Dior Fahrenheit</h3>
                 <p>$89.99</p>
                 <button class="addCart" type="submit">Add to Cart</button>
             </div>
@@ -161,7 +168,7 @@
         <div class="product">
             <img src="https://static.beautytocare.com/media/catalog/product/a/c/acqua-di-parma-colonia-eau-de-cologne-180ml.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Acqua di Parma Colonia</h3>
+                <h3 class="productName">Acqua di Parma Colonia</h3>
                 <p>$79.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -170,7 +177,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_4649.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Tom Ford Noir</h3>
+                <h3 class="productName">Tom Ford Noir</h3>
                 <p>$139.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -179,7 +186,7 @@
         <div class="product">
             <img src="https://www.parfimo.bg/data/cache/thumb_min500_max1000-min500_max1000-12/products/42730/1530453024/issey-miyake-l-eau-d-issey-pour-homme-toaletna-voda-dla-mezczyzn-200-ml-233198.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Issey Miyake L\'Eau d\'Issey Pour Homme</h3>
+                <h3 class="productName">Issey Miyake L\'Eau d\'Issey Pour Homme</h3>
                 <p>$64.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -188,7 +195,7 @@
         <div class="product">
             <img src="https://www.koku.bg/buxus/images/products/3364428_giorgio-armani-code-plnitelny-edt-75ml-tester.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Armani Code</h3>
+                <h3 class="productName">Armani Code</h3>
                 <p>$99.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -203,7 +210,7 @@
             <div class="product">
                 <img src="https://www.koku.bg/buxus/images/products/3327838_6615641640171321.jpg" alt="Perfume 1">
                 <div class="product-details">
-                    <h3>Miss Dior</h3>
+                    <h3 class="productName">Miss Dior</h3>
                     <p>$79.99</p>
 
                     <button class="addCart" type="submit">Add to Cart</button>
@@ -214,7 +221,7 @@
         <div class="product">
             <img src="https://www.sephora.com/productimages/sku/s43687-main-zoom.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Channel No.5</h3>
+                <h3 class="productName">Channel No.5</h3>
                 <p>$99.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -223,7 +230,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_3321_1.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Black Opium</h3>
+                <h3 class="productName">Black Opium</h3>
                 <p>$84.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -232,7 +239,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/-/1-0e89bd97e23d359b9853154f7519a22a.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>J'adore</h3>
+                <h3 class="productName">J'adore</h3>
                 <p>$99.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -241,7 +248,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/_/1_4590.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>La Vie Est Belle</h3>
+                <h3 class="productName">La Vie Est Belle</h3>
                 <p>$69.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -250,7 +257,7 @@
         <div class="product">
             <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_6289_1.jpg" alt="Perfume 1">
             <div class="product-details">
-                <h3>Gucci Bloom</h3>
+                <h3 class="productName">Gucci Bloom</h3>
                 <p>$99.99</p>
 
                 <button class="addCart" type="submit">Add to Cart</button>
@@ -259,7 +266,7 @@
             <div class="product">
                 <img src="https://parfium.bg/public/img/products/57784/big_christian-dior-miss-dior-blooming-bouquet-parfyum-za-jeni-bez-opakovka-edt-5778414977.jpg" alt="Perfume 1">
                 <div class="product-details">
-                    <h3>Miss Dior Blooming Bouquet</h3>
+                    <h3 class="productName">Miss Dior Blooming Bouquet</h3>
                     <p>$69.99</p>
 
                     <button class="addCart" type="submit">Add to Cart</button>
@@ -268,7 +275,7 @@
             <div class="product">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThhma5oS7o1pR6je9njUFzR3bRhJ8ZlKbJrx5JbQYBKg&s" alt="Perfume 1">
                 <div class="product-details">
-                    <h3>Lancôme La Vie Est Belle Eau de Toilette</h3>
+                    <h3 class="productName">Lancôme La Vie Est Belle Eau de Toilette</h3>
                     <p>$84.99</p>
                     <button class="addCart" type="submit">Add to Cart</button>
                 </div>
@@ -276,7 +283,7 @@
             <div class="product">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcHqyXhruZIXnbCSAFC1qTlQ2xJC7FWplhb2DONP6j8w&s" alt="Perfume 1">
                 <div class="product-details">
-                    <h3>Ariana Grande Cloud</h3>
+                    <h3 class="productName">Ariana Grande Cloud</h3>
                     <p>$59.99</p>
                     <button class="addCart" type="submit">Add to Cart</button>
                 </div>
@@ -284,8 +291,8 @@
             <div class="product">
                 <img src="https://pimages.parfumo.de/720/16313_img-9065-helena_rubinstein-heavenly_glow_720.jpg" alt="Perfume 1">
                 <div class="product-details">
-                    <h3>Heavenly Glow</h3>
-                    <p>$89.99</p>
+                    <h3 class="productName">Heavenly Glow</h3>
+                    <p class="price">$89.99</p>
 
                     <button class="addCart" type="submit">Add to Cart</button>
                 </div>
@@ -297,6 +304,7 @@
         <h2>Cart</h2>
         <div id="cart-items"></div>
         <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
+        <button class="cart-hide">Hide Cart</button>
         <a href="#">Checkout</a>
     </div>
     <div class="logout">
@@ -314,12 +322,12 @@
 
         // Get product information
         var perfumeName = $(this).siblings(".product-details").find("h3").text();
-        var perfumePrice = $(this).siblings(".product-details").find("p").text().slice(1); // Extract price without '$'
+        var perfumePrice = $(this).siblings(".product-details").find("p").text().slice(1);
 
         // Create a cart item element
         var cartItem = `<div class="cart-item">
                           <p>${perfumeName}</p>
-                          <p>$${perfumePrice}</p>
+                          <p >$${perfumePrice}</p>
                           <button class="remove-item">Remove</button>
                         </div>`;
 
@@ -342,6 +350,10 @@
         var itemPrice = parseFloat($(this).siblings("p").text().slice(1));
         var currentTotal = parseFloat($("#cart-total-price").text());
         $("#cart-total-price").text((currentTotal - itemPrice).toFixed(2));
+      });
+      // Click event for "Hide Cart" button
+      $(".cart-hide").click(function() {
+         $("#cart").hide();
       });
     });
 </script>
