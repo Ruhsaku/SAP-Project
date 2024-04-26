@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name =  "ordersproducts")
+//@Entity
+//@Table(name =  "OrdersProducts")
 public class OrdersProducts {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderProductId;
     private Integer orderId;
     private Integer productId;
