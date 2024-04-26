@@ -1,12 +1,12 @@
 package com.racooncoding.perfumestore.products;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface ProductRepository
-        extends JpaRepository<Products, Integer> {
-    Optional<Products> findProductByProductName(String productName);
+        extends JpaRepository<Product, Integer> {
+    Optional<Product> findProductByProductName(String productName);
 }

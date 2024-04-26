@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name =  "products")
-public class Products {
+@Table(name =  "Products")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
@@ -15,37 +15,39 @@ public class Products {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private ProductType productType;
-    private Integer quantity;
+    @Column(name = "quantity")
+    private Integer productQuantity;
     @Column(name = "price", precision=10, scale=2, nullable = true)
-    private BigDecimal price;
-    private String description;
+    private BigDecimal productPrice;
+    @Column(name = "description")
+    private String productDescription;
 
-    public Products() {}
+    public Product() {}
 
-    public Products(String description,
-                    BigDecimal price,
+    public Product(String productDescription,
+                    BigDecimal productPrice,
                     String productName,
                     ProductType productType,
-                    Integer quantity) {
+                    Integer productQuantity) {
         this.productName = productName;
         this.productType = productType;
-        this.quantity = quantity;
-        this.price = price;
-        this.description = description;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
     }
 
-    public Products(Integer productId,
+    public Product(Integer productId,
                     String productName,
                     ProductType productType,
-                    Integer quantity,
-                    BigDecimal price,
-                    String description) {
+                    Integer productQuantity,
+                    BigDecimal productPrice,
+                    String productDescription) {
         this.productId = productId;
         this.productName = productName;
         this.productType = productType;
-        this.quantity = quantity;
-        this.price = price;
-        this.description = description;
+        this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
     }
 
     public Integer getProductId() {
@@ -72,39 +74,39 @@ public class Products {
         this.productType = productType;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getProductQuantity() {
+        return productQuantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setProductQuantity(Integer productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "Product{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productType=" + productType +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                ", description='" + description + '\'' +
+                ", productQuantity=" + productQuantity +
+                ", price=" + productPrice +
+                ", description='" + productDescription + '\'' +
                 '}';
     }
 
@@ -112,12 +114,17 @@ public class Products {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products products = (Products) o;
-        return Objects.equals(productId, products.productId) && Objects.equals(productName, products.productName) && productType == products.productType && Objects.equals(quantity, products.quantity) && Objects.equals(price, products.price) && Objects.equals(description, products.description);
+        Product products = (Product) o;
+        return Objects.equals(productId, products.productId) &&
+                Objects.equals(productName, products.productName) &&
+                productType == products.productType &&
+                Objects.equals(productQuantity, products.productQuantity) &&
+                Objects.equals(productPrice, products.productPrice) &&
+                Objects.equals(productDescription, products.productDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, productType, quantity, price, description);
+        return Objects.hash(productId, productName, productType, productQuantity, productPrice, productDescription);
     }
 }

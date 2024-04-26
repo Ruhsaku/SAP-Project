@@ -16,36 +16,15 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping
-    public Products createProduct(@RequestBody Products product) {
-        return productService.saveProduct(product);
-    }
-
-//    @GetMapping("/{id}")
-//    public Optional<Products> getProduct(@PathVariable Integer id) {
-//        return productService.getProductById(id);
-//    }
-
     @GetMapping(path = "/dashboard/getAllProducts")
-    public List<Products> getAllProducts() {
+    public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    @PutMapping("/{id}")
-    public Products updateProduct(@PathVariable Integer id, @RequestBody Products product) {
-        product.setProductId(id);
-        return productService.saveProduct(product);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Integer id) {
-        productService.deleteProductById(id);
-    }
-
     @PostMapping("/dashboard/addProduct")
-    public ResponseEntity<?> addNewProduct(@RequestBody Products products) {
+    public ResponseEntity<?> addNewProduct(@RequestBody Product product) {
         try {
-            productService.addNewProduct(products);
+            productService.addNewProduct(product);
             System.out.println("Product added successfully");
             return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
         } catch (IllegalStateException e) {

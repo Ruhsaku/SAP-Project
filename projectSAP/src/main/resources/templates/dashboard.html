@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Employee Dashboard</title>
@@ -59,6 +59,10 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
+        #message{
+            text-align:center;
+            margin-top:15px;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +81,7 @@
 
     <div class="product-form">
         <h2>Add Product</h2>
-        <form action="" method="post">
+        <form action="/dashboard/addProduct" method="POST">
             <div class="form-group">
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="productName" required>
@@ -98,6 +102,7 @@
                 <label for="productQuantity">Product Quantity:</label>
                 <input type="text" id="productQuantity" name="productQuantity" required>
             </div>
+            <p id="message"></p>
             <div class="form-group">
                 <button type="button" class="add-button" onclick="addProduct()">Add Product</button>
             </div>
@@ -143,57 +148,42 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Function to fetch all products and display them
     function getAllProducts() {
-        // TODO jQuery?
-        // Make AJAX request to fetch all products
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/dashboard/getAllProducts");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE)
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                    try {
-                        var products = JSON.parse(xhr.responseText);
-                        // Update HTML to display products
-                        var productListDiv = document.getElementById("productList");
-                        productListDiv.innerHTML = "<h3>All Products:</h3>";
-                        products.forEach(function(product) {
-                            var productDiv = document.createElement("div");
-                            productDiv.classList.add("product");
-                            productDiv.innerHTML = "<p>ID: " + product.productId + "</p>"
-                                + "<p>Name: " + product.productName + "</p>"
-                                + "<p>Price: $" + product.price + "</p>"
-                                + "<hr>";
-                            productListDiv.appendChild(productDiv);
-                        });
-                        // Show the button "Clear"
-                        document.getElementById('clearButton').style.display = 'inline';
-                    } catch (error) {
-                        console.error("Error parsing JSON: " + error);
-                    }
-                // Parse JSON response
+        $.get("/dashboard/getAllProducts", function(products) {
+            // Clear previous product list
+            $("#productList").empty();
 
-            } else {
-                console.error("Error fetching products: " + xhr.status);
-            }
+            // Iterate through each product and append to the product list
+            $.each(products, function(index, product) {
+                var productDiv = $("<div>").addClass("product");
+                productDiv.html("<p>ID: " + product.productId + "</p>"
+                    + "<p>Name: " + product.productName + "</p>"
+                    + "<p>Price: $" + product.price + "</p>"
+                    + "<p>Quantity: " + product.quantity + "</p>"
+                    + "<p>Description: " + product.description + "</p>"
+                    + "<p>Type: " + product.productType + "</p>"
+                    + "<hr>");
+                $("#productList").append(productDiv);
+            });
 
-        };
-        xhr.send();
+            // Show the Clear button
+            $('#clearButton').css('display', 'inline');
+        }).fail(function(xhr, textStatus, errorThrown) {
+            console.error("Error fetching products: " + textStatus);
+        });
     }
-    // Function to clear the product list and hide the Clear Products button
     function clearProductList() {
-        const productListDiv = document.getElementById('productList');
-        productListDiv.innerHTML = ''; // Clear the product list
-        document.getElementById('clearButton').style.display = 'none'; // Hide the Clear Products button
+        $("#productList").empty();
+        $('#clearButton').css('display', 'none');
     }
     function addProduct() {
-        var productName = document.getElementById('productName').value;
-        var productType = document.getElementById('productType').value;
-        var productDescription = document.getElementById('productDescription').value;
-        var productPrice = parseFloat(document.getElementById('productPrice').value);
-        var productQuantity = parseInt(document.getElementById('productQuantity').value);
+        var productName = $('#productName').val();
+        var productType = $('#productType').val();
+        var productQuantity = $('#productQuantity').val();
+        var productPrice = $('#productPrice').val();
+        var productDescription = $('#productDescription').val();
 
         if (isNaN(productPrice) || productPrice <= 0 || isNaN(productQuantity) || productQuantity <= 0) {
             alert('Please enter valid product price and quantity.');
@@ -201,35 +191,33 @@
         }
 
         var addProductFormData = {
-            productDescription: productDescription,
-            productPrice: productPrice,
             productName: productName,
             productType: productType,
-            productQuantity: productQuantity
+            productQuantity: productQuantity,
+            productPrice: productPrice,
+            productDescription: productDescription
         };
 
         console.log('Sending product data:', addProductFormData);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/dashboard/addProduct', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Product added successfully
-                    console.log('Product added successfully');
-                    document.getElementById('addProductForm').reset();
-                } else {
-                    // Error adding product
-                    console.error('Error adding product:', xhr.status, xhr.responseText);
-                    // You can display an error message to the user if needed
-                }
+        $.ajax({
+            url: '/dashboard/addProduct',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(addProductFormData),
+            success: function(response) {
+                // Product added successfully
+                $('#addProductForm').trigger('reset');
+                $('#message').text('Successfully added product!').css('color', 'green');
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                // Error adding product
+                console.error('Error adding product:', xhr.status, xhr.responseText);
+                $('#message').text('Error adding the product!').css('color', 'red');
             }
-        };
-        xhr.send(JSON.stringify(addProductFormData));
+        });
     }
 </script>
-
 
 </body>
 </html>
