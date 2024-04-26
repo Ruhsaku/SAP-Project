@@ -80,34 +80,29 @@
     <button type="button" class="login-button" onclick="redirectToBusinessLogin()">Business Account Login</button>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // JavaScript for form submission
     function submitForm() {
-        var formLoginData = {
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+        var formData = {
+            email: $('#email').val(),
+            password: $('#password').val()
         };
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/login', true);
-        // TODO
-        // Seems a bit weird to create an XML request to fetch JSON data...
-        xhr.setRequestHeader('Content-Type', 'application/json');
-         xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                // Login successful, redirect to home page (unchanged)
-                var responseLoginData = JSON.parse(xhr.responseText);
-                window.location.href = responseLoginData.redirectUrl;
-                console.log('Login successful');
-            } else {
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+                // Login successful, redirect to home page
+                window.location.href = response && response.redirectUrl ? response.redirectUrl : '/home';
+            },
+            error: function(xhr, textStatus, errorThrown) {
                 // Login failed, display error message
                 console.error('Login failed:', xhr.status, xhr.responseText);
-                document.getElementById('error-message').innerText = 'Invalid username or password!';
+                $('#error-message').text('Invalid username or password!');
             }
-     }
- };
-        xhr.send(JSON.stringify(formLoginData));
+        });
     }
 
     // Function to redirect to business login page

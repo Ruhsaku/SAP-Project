@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -89,40 +89,41 @@
     </form>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function submitForm() {
         var formRegisterData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            username: document.getElementById('username').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            username: $('#username').val(),
+            email: $('#email').val(),
+            password: $('#password').val()
         };
         var isValid = true;
         var errorMessage = "";
 
-         // Name Validation
-         var nameRegex = /^[a-zA-Z\s\-']+$/;
-         if (!nameRegex.test(formRegisterData.firstName) || !nameRegex.test(formRegisterData.lastName)) {
-           isValid = false;
-           errorMessage += "- Invalid name format. Please use letters, spaces, hyphens or apostrophes.\n";
-         }
+        // Name Validation
+        var nameRegex = /^[a-zA-Z\s\-']+$/;
+        if (!nameRegex.test(formRegisterData.firstName) || !nameRegex.test(formRegisterData.lastName)) {
+            isValid = false;
+            errorMessage += "- Invalid name format. Please use letters, spaces, hyphens or apostrophes.\n";
+        }
 
-         // Username Validation
-         var usernameRegex = /^[0-9a-zA-Z_\s\-']+$/;
-         if (!usernameRegex.test(formRegisterData.username)) {
-           isValid = false;
-           errorMessage += "- Invalid username format. Please use letters, numbers, periods, or underscores.\n";
-         }
+        // Username Validation
+        var usernameRegex = /^[0-9a-zA-Z_\s\-']+$/;
+        if (!usernameRegex.test(formRegisterData.username)) {
+            isValid = false;
+            errorMessage += "- Invalid username format. Please use letters, numbers, periods, or underscores.\n";
+        }
 
-         // Email Validation
-         var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-         if (!emailRegex.test(formRegisterData.email)) {
-           isValid = false;
-           errorMessage += "- Invalid email format.\n";
-         }
+        // Email Validation
+        var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+        if (!emailRegex.test(formRegisterData.email)) {
+            isValid = false;
+            errorMessage += "- Invalid email format.\n";
+        }
 
-          // Password Validation (adjust regex as needed)
+        // Password Validation (adjust regex as needed)
         var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(formRegisterData.password)) {
             isValid = false;
@@ -135,26 +136,21 @@
             return; // Prevent form submission
         }
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/register', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Registration successful, redirect to login page
-                    var responseRegisterData = JSON.parse(xhr.responseText);
-                    window.location.href = responseRegisterData.redirectUrl;
-                    console.log("Registration successful, redirect to login page")
-                } else {
-                    // Login failed, display error message
-                    console.error('Register failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Email is taken';
-
-                }
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formRegisterData),
+            success: function(response) {
+                // Registration successful, redirect to login page
+                window.location.href = response && response.redirectUrl ? response.redirectUrl : '/login';
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                // Registration failed, display error message
+                console.error('Register failed:', textStatus, xhr.responseText);
+                $('#error-message').text('Email is taken!');
             }
-
-        };
-        xhr.send(JSON.stringify(formRegisterData));
+        });
     }
 
     function togglePasswordVisibility() {
@@ -166,6 +162,5 @@
         }
     }
 </script>
-
 </body>
 </html>

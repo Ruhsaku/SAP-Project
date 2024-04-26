@@ -77,30 +77,30 @@
         <p><a href="/login">Back to Customer Login</a></p>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // JavaScript for form submission
     function submitForm() {
         var formData = {
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+            email: $('#email').val(),
+            password: $('#password').val()
         };
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/login/employee', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Login successful, redirect to home page
-                    window.location.href = '/dashboard';
-                } else {
-                    // Login failed, display error message
-                    console.error('Login failed:', xhr.status, xhr.responseText);
-                    document.getElementById('error-message').innerText = 'Invalid username or password!';
-                }
+        $.ajax({
+            url: '/login/employee',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+                // Login successful, redirect to home page
+                window.location.href = response && response.redirectUrl ? response.redirectUrl : '/dashboard';
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                // Login failed, display error message
+                console.error('Login failed:', xhr.status, xhr.responseText);
+                $('#error-message').text('Invalid username or password!');
             }
-        };
-        xhr.send(JSON.stringify(formData));
+        });
     }
 
     function togglePasswordVisibility() {
