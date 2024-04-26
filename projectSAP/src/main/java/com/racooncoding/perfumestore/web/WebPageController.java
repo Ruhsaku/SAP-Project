@@ -9,12 +9,10 @@ public class WebPageController {
     public String home(){
         return "home";
     }
-
     @RequestMapping("/register")
     public String register(){
         return "register";
     }
-
     @RequestMapping("/cart")
     public String cart(){
         return "cart";
@@ -37,6 +35,10 @@ public class WebPageController {
     }
     @RequestMapping("/dashboard/getAllProducts")
     public String dashboardGetAllProducts(){
+        return "dashboard";
+    }
+    @RequestMapping("/dashboard/addProduct")
+    public String dashboardAddProduct(){
         return "dashboard";
     }
 }
