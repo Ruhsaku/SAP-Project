@@ -31,3 +31,35 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Compiled files
+*.class
+*.dll
+*.exe
+
+# Archives
+*.zip
+*.tar
+*.gz
+*.rar
+
+# Dependencies
+node_modules/
+vendor/
+
+# Generated files
+*.log
+*.tmp
+*.bak
+
+# Database files
+*.sqlite
+*.db
+*.mdb
+
+# Binary assets (optional)
+*.jpg
+*.png
+*.mp4
+*.docx
+*.pdf

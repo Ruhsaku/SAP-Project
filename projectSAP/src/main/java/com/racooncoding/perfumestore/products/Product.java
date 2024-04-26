@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name =  "products")
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
