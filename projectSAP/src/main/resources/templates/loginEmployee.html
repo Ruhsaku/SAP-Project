@@ -66,6 +66,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
+        <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+        <label for="showPassword">Show Password</label>
+
         <p id="error-message"></p>
         <button type="button" class="login-button" onclick="submitForm()">Login</button>
 
@@ -98,6 +101,15 @@
             }
         };
         xhr.send(JSON.stringify(formData));
+    }
+
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById('password');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
     }
 </script>
 </body>
