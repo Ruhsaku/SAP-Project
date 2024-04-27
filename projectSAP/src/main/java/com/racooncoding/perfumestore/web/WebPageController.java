@@ -41,4 +41,8 @@ public class WebPageController {
     public String dashboardAddProduct(){
         return "dashboard";
     }
+    @RequestMapping("/dashboard/removeProduct")
+    public String dashboardRemoveProduct(){
+        return "dashboard";
+    }
 }
