@@ -6,47 +6,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebPageController {
     @RequestMapping("/home")
-    public String home(){
+    public String home() {
         return "home";
     }
+
     @RequestMapping("/register")
-    public String register(){
+    public String register() {
         return "register";
     }
+
     @RequestMapping("/cart")
-    public String cart(){
+    public String cart() {
         return "cart";
     }
+
     @RequestMapping("/dashboard")
-    public String dashboard(){
+    public String dashboard() {
         return "dashboard";
     }
+
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "index";
     }
+
     @RequestMapping("/")
-    public String startServer(){
+    public String startServer() {
         return "index";
     }
+
     @RequestMapping("/login/employee")
-    public String loginEmployee(){
+    public String loginEmployee() {
         return "loginEmployee";
     }
+
     @RequestMapping("/dashboard/getAllProducts")
-    public String dashboardGetAllProducts(){
+    public String dashboardGetAllProducts() {
         return "dashboard";
     }
+
     @RequestMapping("/dashboard/addProduct")
-    public String dashboardAddProduct(){
+    public String dashboardAddProduct() {
         return "dashboard";
     }
+
     @RequestMapping("/dashboard/removeProduct")
-    public String dashboardRemoveProduct(){
+    public String dashboardRemoveProduct() {
         return "dashboard";
     }
+
     @RequestMapping("/dashboard/updateProduct")
-    public String dashboardUpdateProduct(){
+    public String dashboardUpdateProduct() {
         return "dashboard";
     }
 }

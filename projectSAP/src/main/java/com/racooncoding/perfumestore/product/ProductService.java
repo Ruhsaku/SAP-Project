@@ -20,6 +20,7 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
     public void addNewProduct(Product product) {
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
@@ -30,6 +31,7 @@ public class ProductService {
             productRepository.save(product);
         }
     }
+
     public void deleteProduct(Integer productId) {
         boolean exists = productRepository.existsById(productId);
 

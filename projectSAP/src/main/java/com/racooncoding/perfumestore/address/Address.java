@@ -17,7 +17,9 @@ public class Address {
     private String addressLine1;
     private String addressLine2;
 
-    public Address () {}
+    public Address() {
+    }
+
     public Address(String city,
                    String state,
                    Integer postalCode,
@@ -29,6 +31,7 @@ public class Address {
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
     }
+
     public Address(Integer addressId,
                    String city,
                    String state,

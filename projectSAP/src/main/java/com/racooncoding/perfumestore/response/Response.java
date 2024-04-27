@@ -7,6 +7,7 @@ public class Response {
     public Response(String message) {
         this.message = message;
     }
+
     public Response(String message, String redirectUrl) {
         this.message = message;
         this.redirectUrl = redirectUrl;

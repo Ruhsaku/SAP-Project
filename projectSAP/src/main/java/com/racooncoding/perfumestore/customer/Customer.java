@@ -36,6 +36,7 @@ public class Customer {
         this.email = email;
         this.loyaltyPoints = loyaltyPoints;
     }
+
     public Customer(String firstName,
                     String lastName,
                     String password,

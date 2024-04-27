@@ -14,7 +14,8 @@ public class Orders {
     private Integer addressId;
     private Timestamp orderDate;
 
-    public Orders() {}
+    public Orders() {
+    }
 
     public Orders(Integer customerId,
                   Integer addressId,

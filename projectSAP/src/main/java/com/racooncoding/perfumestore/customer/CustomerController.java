@@ -1,3 +1,4 @@
+
 package com.racooncoding.perfumestore.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,7 @@ public class CustomerController {
             if (loginSuccessful) {
                 System.out.println("Login successful. Have fun!");
                 return ResponseEntity.ok().body("{\"redirectUrl\": \"/home\"}");
-            }
-            else {
+            } else {
                 System.err.println("Invalid email or password. Please try again.");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                         .body("{\"error\": \"Login failed\"}");

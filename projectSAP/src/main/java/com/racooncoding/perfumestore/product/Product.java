@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Table(name =  "Products")
+@Table(name = "Products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,18 +17,19 @@ public class Product {
     private ProductType productType;
     @Column(name = "quantity")
     private Integer productQuantity;
-    @Column(name = "price", precision=10, scale=2, nullable = true)
+    @Column(name = "price", precision = 10, scale = 2, nullable = true)
     private BigDecimal productPrice;
     @Column(name = "description")
     private String productDescription;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String productDescription,
-                    BigDecimal productPrice,
-                    String productName,
-                    ProductType productType,
-                    Integer productQuantity) {
+                   BigDecimal productPrice,
+                   String productName,
+                   ProductType productType,
+                   Integer productQuantity) {
         this.productName = productName;
         this.productType = productType;
         this.productQuantity = productQuantity;
@@ -37,11 +38,11 @@ public class Product {
     }
 
     public Product(Integer productId,
-                    String productName,
-                    ProductType productType,
-                    Integer productQuantity,
-                    BigDecimal productPrice,
-                    String productDescription) {
+                   String productName,
+                   ProductType productType,
+                   Integer productQuantity,
+                   BigDecimal productPrice,
+                   String productDescription) {
         this.productId = productId;
         this.productName = productName;
         this.productType = productType;

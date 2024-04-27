@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer employeeId;
     private String firstName;
     private String lastName;
@@ -42,6 +42,7 @@ public class Employee {
         this.contactNumber = contactNumber;
         this.position_at_store = position;
     }
+
     public Employee(Integer employeeId,
                     String firstName,
                     String lastName,
