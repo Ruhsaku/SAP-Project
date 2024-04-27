@@ -45,4 +45,16 @@ public class ProductController {
                     .body("{\"error\": \"Product's deleting failed!\"}");
         }
     }
+
+    @PutMapping(path = "/dashboard/updateProduct")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+        try {
+            productService.updateProduct(product);
+            System.out.println("Product updated successfully");
+            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\": \"Product's updating failed!\"}");
+        }
+    }
 }
