@@ -74,6 +74,29 @@
             color: white;
             border: 2px solid #097969;
         }
+        .leButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+            padding: 10px 0;
+            background-color: #04AA6D;
+            color: black;
+            border: 2px solid #04AA6D;
+            border-color:
+            border-radius: 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cartB {
+            width: 70px;
+            margin-bottom: 20px
+        }
+        .leButton:hover {
+            background-color: #097969;
+            color: white;
+            border: 2px solid #097969;
+        }
         .logout {
             text-align: center;
             margin-top: 20px;
@@ -100,14 +123,33 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
+        #website-title{
+            color: black;
+            text-align: center;
+            padding: 100px;
+            background: url("https://cdn.mos.cms.futurecdn.net/9obnUbHswXvzfZH7DNECdG.jpeg");
+            background-size: 100% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-size: 35px;
+            text-shadow: 2px 2px 5px white;
+        }
+        #cart{
+            background-color: gray;
+        }
+}
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 
 </head>
 <body>
 
 <div class="container">
-    <h1>Welcome to the Perfume Store!</h1>
+    <div>
+        <h1 id="website-title">Royal Scent</h1>
+    </div>
+
     <div class="men">
         <h2 class="category">Male perfumes</h2>
     <div class="products">
@@ -289,7 +331,7 @@
                 </div>
             </div>
             <div class="product">
-                <img src="https://pimages.parfumo.de/720/16313_img-9065-helena_rubinstein-heavenly_glow_720.jpg" alt="Perfume 1">
+                <img src="https://es.victoriassecret.com/p/874x1165/tif/13/b1/13b11a40cbee455c86618dd963fa4db9/112144783872_OM_B.jpg" alt="Perfume 1">
                 <div class="product-details">
                     <h3 class="productName">Heavenly Glow</h3>
                     <p class="price">$89.99</p>
@@ -301,40 +343,41 @@
         </div>
     </div>
     <div id="cart" style="display: none; position: fixed; right: 0; top: 50%; transform: translateY(-50%); background-color: white; padding: 10px; border: 1px solid #ddd; width: 300px; max-height: 400px; overflow-y: auto;">
-        <h2>Cart</h2>
+        <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
         <div id="cart-items"></div>
         <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
-        <button class="cart-hide" onclick="hideCart()">Hide Cart</button>
-        <a href="#">Checkout</a>
+        <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
+<!--        TO DO: Add a checkout functionality-->
+<!--        <a href="#">Checkout</a>-->
     </div>
-    <div class="logout">
-        <p><a href="/cart">Cart</a></p>
-        <p><a href="/login">Logout</a></p>
+    <div style="display: flex; justify-content:center;align-items:center; flex-direction:column;" class="logout">
+        <p><a class="leButton" onclick="showCart()">Cart</a></p>
+        <p><a class="leButton" href="/login">Logout</a></p>
     </div>
 </div>
 
 </body>
 <script>
-    // Function to update the cart total price
+    // Update cart total price
     function updateCartTotal() {
         let totalPrice = 0;
         const cartItems = document.querySelectorAll('.cart-item');
         cartItems.forEach(item => {
             const priceElement = item.querySelector('.price');
-            const price = parseFloat(priceElement.textContent.slice(1));
+            const price = parseFloat(priceElement.textContent.slice(1)); //Remove dollar sign
             totalPrice += price;
         });
         document.getElementById('cart-total-price').textContent = totalPrice.toFixed(2);
     }
 
-    // Function to add product to cart
+    // Add product to cart
     function addToCart(button) {
         const product = button.parentElement.parentElement;
         const productName = product.querySelector('.productName').textContent;
         const price = product.querySelector('.price').textContent;
         const imageUrl = product.querySelector('img').src;
 
-        // Create a new cart item element
+        // Create a new cart item
         const cartItem = document.createElement('div');
         cartItem.classList.add('cart-item');
         cartItem.innerHTML = `
@@ -343,18 +386,18 @@
                 <img style="width: 150px" src="${imageUrl}" alt="Perfume">
                 <h3>${productName}</h3>
                 <p class="price">${price}</p>
-                <button class="cart-item-remove">Remove</button>
+                <button class="cart-item-remove leButton cartB">Remove</button>
             </div>
         `;
 
-        // Add remove item functionality
+        // Remove item
         const removeButton = cartItem.querySelector('.cart-item-remove');
         removeButton.addEventListener('click', () => {
             cartItem.remove();
             updateCartTotal();
         });
 
-        // Add the cart item to the cart
+        // Add cart item
         const cartItems = document.getElementById('cart-items');
         cartItems.appendChild(cartItem);
 
@@ -371,9 +414,13 @@
     function handleCartScroll(event) {
          console.log("Cart scroll event detected:", event.deltaY);
     }
-    // Function to hide the cart
+    // Hide cart
     function hideCart() {
-         document.getElementById('cart').style.display = 'none';
+         document.getElementById("cart").style.display = "none";
+    }
+    // Show cart
+    function showCart(){
+        document.getElementById("cart").style.display = "block"
     }
 </script>
 
