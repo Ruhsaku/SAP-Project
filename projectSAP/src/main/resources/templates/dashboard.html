@@ -59,7 +59,11 @@
         .form-group button:hover {
             background-color: #0056b3;
         }
-        #message{
+        #add-message{
+            text-align:center;
+            margin-top:15px;
+        }
+        #remove-message{
             text-align:center;
             margin-top:15px;
         }
@@ -81,7 +85,7 @@
 
     <div class="product-form">
         <h2>Add Product</h2>
-        <form action="/dashboard/addProduct" method="POST">
+        <form id="addProductForm" action="/dashboard/addProduct" method="POST">
             <div class="form-group">
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="productName" required>
@@ -102,7 +106,7 @@
                 <label for="productQuantity">Product Quantity:</label>
                 <input type="text" id="productQuantity" name="productQuantity" required>
             </div>
-            <p id="message"></p>
+            <p id="add-message"></p>
             <div class="form-group">
                 <button type="button" class="add-button" onclick="addProduct()">Add Product</button>
             </div>
@@ -111,13 +115,14 @@
 
     <div class="product-form">
         <h2>Remove Product</h2>
-        <form action="/removeProduct" method="post">
+        <form id="removeProductForm" action="/dashboard/removeProduct" method="POST">
             <div class="form-group">
                 <label for="productId">Product ID:</label>
                 <input type="text" id="productId" name="productId" required>
             </div>
+            <p id="remove-message"></p>
             <div class="form-group">
-                <button type="submit">Remove Product</button>
+                <button type="button" class="remove-button" onclick="removeProduct()">Remove Product</button>
             </div>
         </form>
     </div>
@@ -160,9 +165,9 @@
                 var productDiv = $("<div>").addClass("product");
                 productDiv.html("<p>ID: " + product.productId + "</p>"
                     + "<p>Name: " + product.productName + "</p>"
-                    + "<p>Price: $" + product.price + "</p>"
-                    + "<p>Quantity: " + product.quantity + "</p>"
-                    + "<p>Description: " + product.description + "</p>"
+                    + "<p>Price: $" + product.productPrice + "</p>"
+                    + "<p>Quantity: " + product.productQuantity + "</p>"
+                    + "<p>Description: " + product.productDescription + "</p>"
                     + "<p>Type: " + product.productType + "</p>"
                     + "<hr>");
                 $("#productList").append(productDiv);
@@ -177,6 +182,17 @@
     function clearProductList() {
         $("#productList").empty();
         $('#clearButton').css('display', 'none');
+    }
+    function resetFormAndMessage(formId, messageElementId) {
+        $('#' + formId)[0].reset(); // Reset form
+        setTimeout(function() {
+            $('#' + messageElementId).text('').css('color', ''); // Reset message and color after delay
+        }, 3500); // Delay in milliseconds
+    }
+    function resetMessage(messageElementId) {
+        setTimeout(function() {
+            $('#' + messageElementId).text('').css('color', ''); // Reset message and color after delay
+        }, 3500); // Delay in milliseconds
     }
     function addProduct() {
         var productName = $('#productName').val();
@@ -198,8 +214,6 @@
             productDescription: productDescription
         };
 
-        console.log('Sending product data:', addProductFormData);
-
         $.ajax({
             url: '/dashboard/addProduct',
             type: 'POST',
@@ -207,13 +221,49 @@
             data: JSON.stringify(addProductFormData),
             success: function(response) {
                 // Product added successfully
-                $('#addProductForm').trigger('reset');
-                $('#message').text('Successfully added product!').css('color', 'green');
+                // $('#addProductForm').trigger('reset');
+                $('#add-message').text('Successfully added product!').css('color', 'green');
+                resetFormAndMessage('addProductForm', 'add-message')
             },
             error: function(xhr, textStatus, errorThrown) {
                 // Error adding product
                 console.error('Error adding product:', xhr.status, xhr.responseText);
-                $('#message').text('Error adding the product!').css('color', 'red');
+                $('#add-message').text('Error adding the product!').css('color', 'red').trigger('reset');
+                resetMessage('add-message');
+            }
+        });
+    }
+    function removeProduct() {
+        var productId = $('#productId').val();
+
+        // Check if the productId is empty
+        if (!productId) {
+            alert('Please enter a product ID.');
+            return;
+        }
+
+        // Confirm deletion
+        if (!confirm('Are you sure you want to delete this product?')) {
+            return;
+        }
+
+        var requestData = {productId: productId };
+
+        $.ajax({
+            url: '/dashboard/removeProduct',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(requestData),
+            success: function(response) {
+                // Product deleted successfully
+                $('#remove-message').text('Product deleted successfully').css('color', 'green');
+                resetFormAndMessage('removeProductForm', 'remove-message')
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                // Error deleting product
+                console.error('Error deleting product:', xhr.status, xhr.responseText);
+                $('#remove-message').text('Error deleting the product!').css('color', 'red').trigger('reset');
+                resetMessage('remove-message');
             }
         });
     }

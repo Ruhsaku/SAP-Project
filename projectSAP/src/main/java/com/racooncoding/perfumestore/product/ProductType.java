@@ -1,4 +1,4 @@
-package com.racooncoding.perfumestore.products;
+package com.racooncoding.perfumestore.product;
 
 public enum ProductType {
     MEN,

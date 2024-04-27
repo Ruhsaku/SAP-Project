@@ -1,4 +1,4 @@
-package com.racooncoding.perfumestore.products;
+package com.racooncoding.perfumestore.product;
 
 import jakarta.persistence.*;
 

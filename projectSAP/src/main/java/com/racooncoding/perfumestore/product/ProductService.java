@@ -1,4 +1,4 @@
-package com.racooncoding.perfumestore.products;
+package com.racooncoding.perfumestore.product;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +18,6 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
-    public void deleteProductById(Integer id) {
-        productRepository.deleteById(id);
-    }
     public void addNewProduct(Product product) {
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
@@ -31,5 +27,14 @@ public class ProductService {
         } else {
             productRepository.save(product);
         }
+    }
+    public void deleteProduct(Integer productId) {
+        boolean exists = productRepository.existsById(productId);
+
+        if (!exists) {
+            throw new IllegalStateException(
+                    "Product with id " + productId + " does not exist!");
+        }
+        productRepository.deleteById(productId);
     }
 }

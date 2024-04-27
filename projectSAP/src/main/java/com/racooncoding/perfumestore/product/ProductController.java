@@ -1,4 +1,4 @@
-package com.racooncoding.perfumestore.products;
+package com.racooncoding.perfumestore.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @PostMapping("/dashboard/addProduct")
+    @PostMapping(path = "/dashboard/addProduct")
     public ResponseEntity<?> addNewProduct(@RequestBody Product product) {
         try {
             productService.addNewProduct(product);
@@ -30,7 +30,19 @@ public class ProductController {
         } catch (IllegalStateException e) {
             System.err.println("Product adding failed. Please try again.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"Product adding failed\"}");
+                    .body("{\"error\": \"Product adding failed!\"}");
+        }
+    }
+
+    @DeleteMapping(path = "/dashboard/removeProduct")
+    public ResponseEntity<?> removeProduct(@RequestBody Product product) {
+        try {
+            productService.deleteProduct(product.getProductId());
+            System.out.println("Product deleted successfully");
+            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\": \"Product's deleting failed!\"}");
         }
     }
 }
