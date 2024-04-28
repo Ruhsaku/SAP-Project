@@ -1,11 +1,11 @@
 package com.racooncoding.perfumestore.product;
 
 import com.racooncoding.perfumestore.exceptions.DeleteProductException;
-import com.racooncoding.perfumestore.exceptions.InvalidNewProductDataException;
 import com.racooncoding.perfumestore.exceptions.ProductsListEmptyException;
 import com.racooncoding.perfumestore.exceptions.UpdateProductErrorException;
 import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,13 +30,21 @@ public class ProductController {
     }
 
     @PostMapping(path = "/dashboard/addProduct")
-    public ResponseEntity<Response> addNewProduct(@RequestBody Product product) throws InvalidNewProductDataException {
+    public ResponseEntity<Response> addNewProduct(@RequestBody Product product){
     // TODO --> Fix Exception Handling
-        Response response;
-        productService.addNewProduct(product);
-        response = new Response("Product added successfully", "/dashboard");
-        System.out.println(response.getMessage());
-        return ResponseEntity.ok().body(response);
+        try{
+            Response response;
+            productService.addNewProduct(product);
+            response = new Response("Product added successfully", "/dashboard");
+            System.out.println(response.getMessage());
+            return ResponseEntity.ok().body(response);
+        }catch (RuntimeException e){
+            Response response;
+            response = new Response("Invalid product data. Try again.", "/dashboard");
+            System.err.println(response.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+
 
     }
 

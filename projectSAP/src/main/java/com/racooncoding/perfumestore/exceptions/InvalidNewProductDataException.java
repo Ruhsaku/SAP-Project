@@ -7,4 +7,9 @@ public class InvalidNewProductDataException extends RuntimeException{
     public InvalidNewProductDataException(String message){
         super(message);
     }
+
+    @Override
+    public String getMessage() {
+        return "Product addition failed. Try again.";
+    }
 }

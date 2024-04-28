@@ -25,7 +25,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addNewProduct(Product product) {
+    public void addNewProduct(Product product) throws InvalidNewProductDataException{
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
 
