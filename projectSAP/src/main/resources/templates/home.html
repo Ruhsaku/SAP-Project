@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Perfume Store - Home</title>
@@ -64,7 +64,6 @@
             background-color: #04AA6D;
             color: black;
             border: 2px solid #04AA6D;
-            border-color:
             border-radius: 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -83,7 +82,6 @@
             background-color: #04AA6D;
             color: black;
             border: 2px solid #04AA6D;
-            border-color:
             border-radius: 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -136,15 +134,11 @@
             text-shadow: 2px 2px 5px white;
         }
         #cart{
-            background-color: gray;
+            background-color: rgb(128, 128, 128);
         }
-}
     </style>
-
-
 </head>
 <body>
-
 <div class="container">
     <div>
         <h1 id="website-title">Royal Scent</h1>
@@ -346,9 +340,9 @@
         <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
         <div id="cart-items"></div>
         <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
-        <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
 <!--        TO DO: Add a checkout functionality-->
-<!--        <a href="#">Checkout</a>-->
+        <a href='/checkout'>Checkout</a>
+        <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
     </div>
     <div style="display: flex; justify-content:center;align-items:center; flex-direction:column;" class="logout">
         <p><a class="leButton" onclick="showCart()">Cart</a></p>
