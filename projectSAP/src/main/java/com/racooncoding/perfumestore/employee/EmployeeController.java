@@ -1,5 +1,6 @@
 package com.racooncoding.perfumestore.employee;
 
+import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,22 +20,26 @@ public class EmployeeController {
 
     @PostMapping(path ="/login/employee")
     @ResponseBody
-    public ResponseEntity<?> loginEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Response> loginEmployee(@RequestBody Employee employee) {
         // TODO --> Exception Handling
+        Response response;
         try {
             boolean loginSuccessful = employeeService.login(employee);
             if (loginSuccessful) {
-                System.out.println("Login successful. Let's work!");
-                return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+                response = new Response("Login successful. Let's work!", "/dashboard");
+                System.out.println(response.getMessage());
+                return ResponseEntity.ok().body(response);
             } else {
-                System.err.println("Invalid email or password. Please try again.");
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body("{\"error\": \"Login failed\"}");
+                response = new Response("Employee not found!");
+                System.err.println(response.getMessage());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(response);
             }
         } catch (IllegalStateException e) {
-            System.err.println("Login failed. Please try again.");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("{\"error\": \"Login failed\"}");
+            response = new Response("Login failed.");
+            System.err.println(response.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(response);
         }
     }
 }

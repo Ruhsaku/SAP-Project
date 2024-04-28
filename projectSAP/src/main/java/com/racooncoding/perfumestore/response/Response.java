@@ -20,4 +20,12 @@ public class Response {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "message='" + message + '\'' +
+                ", redirectUrl='" + redirectUrl + '\'' +
+                '}';
+    }
 }

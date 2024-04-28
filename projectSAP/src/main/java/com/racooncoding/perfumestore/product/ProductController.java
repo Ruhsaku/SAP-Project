@@ -1,5 +1,6 @@
 package com.racooncoding.perfumestore.product;
 
+import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,42 +24,54 @@ public class ProductController {
     }
 
     @PostMapping(path = "/dashboard/addProduct")
-    public ResponseEntity<?> addNewProduct(@RequestBody Product product) {
+    public ResponseEntity<Response> addNewProduct(@RequestBody Product product) {
         // TODO --> Exception Handling
+        Response response;
         try {
             productService.addNewProduct(product);
-            System.out.println("Product added successfully");
-            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+            response = new Response("Product added successfully", "/dashboard");
+            System.out.println(response.getMessage());
+            return ResponseEntity.ok().body(response);
         } catch (IllegalStateException e) {
-            System.err.println("Product adding failed. Please try again.");
+            response = new Response("Product adding failed. Please try again.");
+            System.err.println(response.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"Product adding failed!\"}");
+                    .body(response);
         }
     }
 
     @DeleteMapping(path = "/dashboard/removeProduct")
-    public ResponseEntity<?> removeProduct(@RequestBody Product product) {
+    public ResponseEntity<Response> removeProduct(@RequestBody Product product) {
         // TODO --> Exception Handling
+        Response response;
         try {
             productService.deleteProduct(product.getProductId());
-            System.out.println("Product deleted successfully");
-            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+            response = new Response("Product deleted successfully", "/dashboard");
+            System.out.println(response.getMessage());
+            return ResponseEntity.ok().body(response);
+
         } catch (IllegalStateException e) {
+            response = new Response("Product's deleting failed!");
+            System.err.println(response.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"Product's deleting failed!\"}");
+                    .body(response);
         }
     }
 
     @PutMapping(path = "/dashboard/updateProduct")
-    public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+    public ResponseEntity<Response> updateProduct(@RequestBody Product product) {
         // TODO --> Exception Handling
+        Response response;
         try {
             productService.updateProduct(product);
-            System.out.println("Product updated successfully");
-            return ResponseEntity.ok().body("{\"redirectUrl\": \"/dashboard\"}");
+            response = new Response("Product updated successfully", "/dashboard");
+            System.out.println(response.getMessage());
+            return ResponseEntity.ok().body(response);
         } catch (IllegalStateException e) {
+            response = new Response("Product's updating failed!");
+            System.err.println(response.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"Product's updating failed!\"}");
+                    .body(response);
         }
     }
 }

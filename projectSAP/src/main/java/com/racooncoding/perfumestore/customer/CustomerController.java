@@ -1,6 +1,6 @@
-
 package com.racooncoding.perfumestore.customer;
 
+import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,42 +17,45 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
-
-    // TODO ResponseEntity<Response> instead of "?"
-    // Try to avoid using the wildcard template parameter "?".
-    // In this case, I understand why it's used but generally try to void returning 2 different types in one method.
     @PostMapping(path = "/register")
-    public ResponseEntity<?> registerNewCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Response> registerNewCustomer(@RequestBody Customer customer) {
         // TODO --> Exception Handling
+        Response response;
         try {
             customerService.addNewCustomer(customer);
-            System.out.println("Registration successful. Please login.");
-            return ResponseEntity.ok().body("{\"redirectUrl\": \"/login\"}");
+            response = new Response("Registration successful. Please login.", "/login");
+            System.out.println(response.getMessage());
+            return ResponseEntity.ok().body(response);
         } catch (IllegalStateException e) {
-            System.err.println("Registration failed. Please try again.");
+            response = new Response("Registration failed. Please try again.");
+            System.err.println(response.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("{\"error\": \"Registration failed\"}");
+                    .body(response);
         }
     }
 
     @PostMapping(path = "/login")
     @ResponseBody
-    public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Response> loginCustomer(@RequestBody Customer customer) {
         // TODO --> Exception Handling
+        Response response;
         try {
             boolean loginSuccessful = customerService.login(customer);
             if (loginSuccessful) {
-                System.out.println("Login successful. Have fun!");
-                return ResponseEntity.ok().body("{\"redirectUrl\": \"/home\"}");
+                response = new Response("Login successful. Have fun!", "/home");
+                System.out.println(response.getMessage());
+                return ResponseEntity.ok().body(response);
             } else {
-                System.err.println("Invalid email or password. Please try again.");
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body("{\"error\": \"Login failed\"}");
+                response = new Response("Invalid email or password. Please try again.");
+                System.err.println(response.getMessage());
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(response);
             }
         } catch (IllegalStateException e) {
-            System.err.println("Login failed. Please try again.");
+            response = new Response("Login failed. Please try again.");
+            System.err.println(response.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("{\"error\": \"Login failed\"}");
+                    .body(response);
         }
     }
 }
