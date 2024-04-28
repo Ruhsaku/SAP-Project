@@ -1,5 +1,8 @@
 package com.racooncoding.perfumestore.customer;
 
+import com.racooncoding.perfumestore.exceptions.EmailAlreadyUsedException;
+import com.racooncoding.perfumestore.exceptions.IncorrectPasswordException;
+import com.racooncoding.perfumestore.exceptions.UserNotFoundException;
 import com.racooncoding.perfumestore.passwordhash.PasswordDecoder;
 import com.racooncoding.perfumestore.passwordhash.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,7 @@ public class CustomerService {
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
 
         if (customerOptional.isPresent()) {
-            throw new IllegalArgumentException("Email address is already in use.");
+            throw new EmailAlreadyUsedException();
         } else {
             customer.setPassword(PasswordEncoder.encodePassword(customer.getPassword()));
             customerRepository.save(customer);
@@ -36,12 +39,12 @@ public class CustomerService {
         if (customerOptional.isPresent()) {
             Customer storedCustomer = customerOptional.get();
             if (PasswordDecoder.verifyPassword(customer.getPassword(), storedCustomer.getPassword())) {
-                return true; // Login successful
+                return true;
             } else {
-                throw new IllegalArgumentException("Incorrect password.");
+                throw new IncorrectPasswordException();
             }
         } else {
-            throw new IllegalArgumentException("Customer with the given email address does not exist.");
+            throw new UserNotFoundException();
         }
     }
 }
