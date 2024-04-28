@@ -1,5 +1,9 @@
 package com.racooncoding.perfumestore.product;
 
+import com.racooncoding.perfumestore.exceptions.DeleteProductException;
+import com.racooncoding.perfumestore.exceptions.InvalidNewProductDataException;
+import com.racooncoding.perfumestore.exceptions.ProductExistsException;
+import com.racooncoding.perfumestore.exceptions.UpdateProductErrorException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,32 +26,35 @@ public class ProductService {
     }
 
     public void addNewProduct(Product product) {
-        // TODO --> Exception Handling
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
 
         if (productOptional.isPresent()) {
-            throw new IllegalStateException("Product with that name already exists!");
+            throw new ProductExistsException();
         } else {
-            productRepository.save(product);
+            try{
+                productRepository.save(product);
+            }catch (InvalidNewProductDataException e){
+                System.err.println(e.getMessage());
+            }
+
         }
     }
 
     public void deleteProduct(Integer productId) {
-        // TODO --> Exception Handling
         boolean exists = productRepository.existsById(productId);
         if (!exists) {
-            throw new IllegalStateException(
+            throw new DeleteProductException(
                     "Product with id " + productId + " does not exist!");
         }
         productRepository.deleteById(productId);
     }
 
     @Transactional
-    public void updateProduct(Product product) {
+    public void updateProduct(Product product) throws UpdateProductErrorException {
         // TODO --> Exception Handling
         Product existingProduct = productRepository.findById(product.getProductId())
-                .orElseThrow(() -> new IllegalStateException(
+                .orElseThrow(() -> new UpdateProductErrorException(
                         "Product with id " + product.getProductId() + " does not exist!"
                 ));
         Integer id = product.getProductId();
@@ -57,64 +64,44 @@ public class ProductService {
         BigDecimal price = product.getProductPrice();
         String description = product.getProductDescription();
 
-        try {
-            if (id != null && id > 0) {
-                existingProduct.setProductId(id);
-            } else {
-                throw new IllegalArgumentException("Error for id!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        if (id != null && id > 0) {
+            existingProduct.setProductId(id);
+        } else {
+            throw new UpdateProductErrorException("Id error detected!");
         }
 
-        try {
-            if (name != null) {
-                existingProduct.setProductName(name);
-            } else {
-                throw new IllegalArgumentException("Error for name!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        if (name != null) {
+            existingProduct.setProductName(name);
+        } else {
+            throw new UpdateProductErrorException("Name error detected!");
         }
 
-        try {
-            if (type == ProductType.MEN || type == ProductType.WOMEN) {
-                existingProduct.setProductType(type);
-            } else {
-                throw new IllegalArgumentException("Error for type!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+
+        if (type == ProductType.MEN || type == ProductType.WOMEN) {
+            existingProduct.setProductType(type);
+        } else {
+            throw new UpdateProductErrorException("Type error detected!");
         }
 
-        try {
-            if (quantity > 0) {
-                existingProduct.setProductQuantity(quantity);
-            } else {
-                throw new IllegalArgumentException("Error for quantity!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        if (quantity > 0) {
+            existingProduct.setProductQuantity(quantity);
+        } else {
+            throw new UpdateProductErrorException("Quantity error detected");
         }
 
-        try {
-            if (price != null && price.compareTo(BigDecimal.ZERO) > 0) {
-                existingProduct.setProductPrice(price);
-            } else {
-                throw new IllegalArgumentException("Error for price!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+
+
+        if (price != null && price.compareTo(BigDecimal.ZERO) > 0) {
+            existingProduct.setProductPrice(price);
+        } else {
+            throw new UpdateProductErrorException("Price error detected!");
         }
 
-        try {
-            if (description != null) {
-                existingProduct.setProductDescription(description);
-            } else {
-                throw new IllegalArgumentException("Error for description!");
-            }
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+        if (description != null) {
+            existingProduct.setProductDescription(description);
+        } else {
+            throw new IllegalArgumentException("Description error detected!");
         }
+
     }
 }

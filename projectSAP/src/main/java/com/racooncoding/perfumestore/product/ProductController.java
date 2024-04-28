@@ -1,8 +1,11 @@
 package com.racooncoding.perfumestore.product;
 
+import com.racooncoding.perfumestore.exceptions.DeleteProductException;
+import com.racooncoding.perfumestore.exceptions.InvalidNewProductDataException;
+import com.racooncoding.perfumestore.exceptions.ProductsListEmptyException;
+import com.racooncoding.perfumestore.exceptions.UpdateProductErrorException;
 import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,60 +21,42 @@ public class ProductController {
     }
 
     @GetMapping(path = "/dashboard/getAllProducts")
-    public List<Product> getAllProducts() {
-        // TODO --> Exception Handling
+    public List<Product> getAllProducts() throws ProductsListEmptyException {
+
+        if (productService.getAllProducts().isEmpty()){
+            throw new ProductsListEmptyException();
+        }
         return productService.getAllProducts();
     }
 
     @PostMapping(path = "/dashboard/addProduct")
-    public ResponseEntity<Response> addNewProduct(@RequestBody Product product) {
-        // TODO --> Exception Handling
+    public ResponseEntity<Response> addNewProduct(@RequestBody Product product) throws InvalidNewProductDataException {
+    // TODO --> Fix Exception Handling
         Response response;
-        try {
-            productService.addNewProduct(product);
-            response = new Response("Product added successfully", "/dashboard");
-            System.out.println(response.getMessage());
-            return ResponseEntity.ok().body(response);
-        } catch (IllegalStateException e) {
-            response = new Response("Product adding failed. Please try again.");
-            System.err.println(response.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(response);
-        }
+        productService.addNewProduct(product);
+        response = new Response("Product added successfully", "/dashboard");
+        System.out.println(response.getMessage());
+        return ResponseEntity.ok().body(response);
+
     }
 
     @DeleteMapping(path = "/dashboard/removeProduct")
-    public ResponseEntity<Response> removeProduct(@RequestBody Product product) {
-        // TODO --> Exception Handling
+    public ResponseEntity<Response> removeProduct(@RequestBody Product product) throws DeleteProductException {
         Response response;
-        try {
-            productService.deleteProduct(product.getProductId());
-            response = new Response("Product deleted successfully", "/dashboard");
-            System.out.println(response.getMessage());
-            return ResponseEntity.ok().body(response);
+        productService.deleteProduct(product.getProductId());
+        response = new Response("Product deleted successfully", "/dashboard");
+        System.out.println(response.getMessage());
+        return ResponseEntity.ok().body(response);
 
-        } catch (IllegalStateException e) {
-            response = new Response("Product's deleting failed!");
-            System.err.println(response.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(response);
-        }
     }
 
     @PutMapping(path = "/dashboard/updateProduct")
-    public ResponseEntity<Response> updateProduct(@RequestBody Product product) {
-        // TODO --> Exception Handling
+    public ResponseEntity<Response> updateProduct(@RequestBody Product product) throws UpdateProductErrorException {
+        // TODO --> Fix Exception Handling
         Response response;
-        try {
-            productService.updateProduct(product);
-            response = new Response("Product updated successfully", "/dashboard");
-            System.out.println(response.getMessage());
-            return ResponseEntity.ok().body(response);
-        } catch (IllegalStateException e) {
-            response = new Response("Product's updating failed!");
-            System.err.println(response.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(response);
-        }
+        productService.updateProduct(product);
+        response = new Response("Product updated successfully", "/dashboard");
+        System.out.println(response.getMessage());
+        return ResponseEntity.ok().body(response);
     }
 }
