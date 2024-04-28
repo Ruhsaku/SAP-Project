@@ -22,19 +22,20 @@ public class ProductService {
     }
 
     public void addNewProduct(Product product) {
+        // TODO --> Exception Handling
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
 
         if (productOptional.isPresent()) {
-            throw new IllegalStateException("This product exists!");
+            throw new IllegalStateException("Product with that name already exists!");
         } else {
             productRepository.save(product);
         }
     }
 
     public void deleteProduct(Integer productId) {
+        // TODO --> Exception Handling
         boolean exists = productRepository.existsById(productId);
-
         if (!exists) {
             throw new IllegalStateException(
                     "Product with id " + productId + " does not exist!");
@@ -44,6 +45,7 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(Product product) {
+        // TODO --> Exception Handling
         Product existingProduct = productRepository.findById(product.getProductId())
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with id " + product.getProductId() + " does not exist!"

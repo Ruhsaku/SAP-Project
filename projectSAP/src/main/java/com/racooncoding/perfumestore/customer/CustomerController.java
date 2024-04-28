@@ -21,8 +21,9 @@ public class CustomerController {
     // TODO ResponseEntity<Response> instead of "?"
     // Try to avoid using the wildcard template parameter "?".
     // In this case, I understand why it's used but generally try to void returning 2 different types in one method.
-    @PostMapping("/register")
+    @PostMapping(path = "/register")
     public ResponseEntity<?> registerNewCustomer(@RequestBody Customer customer) {
+        // TODO --> Exception Handling
         try {
             customerService.addNewCustomer(customer);
             System.out.println("Registration successful. Please login.");
@@ -37,6 +38,7 @@ public class CustomerController {
     @PostMapping(path = "/login")
     @ResponseBody
     public ResponseEntity<?> loginCustomer(@RequestBody Customer customer) {
+        // TODO --> Exception Handling
         try {
             boolean loginSuccessful = customerService.login(customer);
             if (loginSuccessful) {

@@ -18,11 +18,13 @@ public class ProductController {
 
     @GetMapping(path = "/dashboard/getAllProducts")
     public List<Product> getAllProducts() {
+        // TODO --> Exception Handling
         return productService.getAllProducts();
     }
 
     @PostMapping(path = "/dashboard/addProduct")
     public ResponseEntity<?> addNewProduct(@RequestBody Product product) {
+        // TODO --> Exception Handling
         try {
             productService.addNewProduct(product);
             System.out.println("Product added successfully");
@@ -36,6 +38,7 @@ public class ProductController {
 
     @DeleteMapping(path = "/dashboard/removeProduct")
     public ResponseEntity<?> removeProduct(@RequestBody Product product) {
+        // TODO --> Exception Handling
         try {
             productService.deleteProduct(product.getProductId());
             System.out.println("Product deleted successfully");
@@ -48,6 +51,7 @@ public class ProductController {
 
     @PutMapping(path = "/dashboard/updateProduct")
     public ResponseEntity<?> updateProduct(@RequestBody Product product) {
+        // TODO --> Exception Handling
         try {
             productService.updateProduct(product);
             System.out.println("Product updated successfully");

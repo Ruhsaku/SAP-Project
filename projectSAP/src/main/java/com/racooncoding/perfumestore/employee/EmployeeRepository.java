@@ -7,8 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository
-        extends JpaRepository<Employee, Long> {
-
-    // @Query("SELECT e FROM Employee e WHERE e.email = ?1 and e.password = ?2")
+        extends JpaRepository<Employee, Integer> {
     Optional<Employee> findEmployeeByEmailAndPassword(String email, String password);
 }

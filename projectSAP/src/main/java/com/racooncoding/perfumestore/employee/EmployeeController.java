@@ -17,9 +17,10 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/login/employee")
+    @PostMapping(path ="/login/employee")
     @ResponseBody
     public ResponseEntity<?> loginEmployee(@RequestBody Employee employee) {
+        // TODO --> Exception Handling
         try {
             boolean loginSuccessful = employeeService.login(employee);
             if (loginSuccessful) {

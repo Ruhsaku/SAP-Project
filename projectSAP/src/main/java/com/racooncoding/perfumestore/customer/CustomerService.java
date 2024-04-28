@@ -17,6 +17,7 @@ public class CustomerService {
     }
 
     public void addNewCustomer(Customer customer) {
+        // TODO --> Fix the Business logic
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
 
         if (customerOptional.isPresent()) {
@@ -28,7 +29,9 @@ public class CustomerService {
     }
 
     public boolean login(Customer customer) {
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
+        // TODO --> Fix the Business logic
+        Optional<Customer> customerOptional = customerRepository.
+                findCustomerByEmail(customer.getEmail());
 
         if (customerOptional.isPresent()) {
             Customer storedCustomer = customerOptional.get();
