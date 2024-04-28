@@ -1,35 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th='http://www.thymeleaf.org'>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'arial';
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        #checkout-form input,
-        #checkout-form button {
+
+        .checkout-container {
+            width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .checkout-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .checkout-form {
+            width: 100%;
+        }
+
+        .checkout-form label {
             display: block;
-            margin: 12px;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .checkout-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .checkout-form .billing-address {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-<form action='/checkout' method='POST' id='checkout-form'>
-    <input type='hidden' th:value='${amount}' name='amount' />
-    <label>Price:<span th:text='${amount/100}' /></label>
-    <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
-    <script
-            src='https://checkout.stripe.com/checkout.js'
-            class='stripe-button'
-            th:attr='data-key=${stripePublicKey},
+<div class="checkout-container">
+    <form action="/address" method="POST" class="checkout-form">
+        <div class="billing-address">
+            <h2>Shipping Address</h2>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required>
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required>
+            <label for="zip">Zip</label>
+            <input type="text" id="zip" name="zip" required>
+            <label for="address1">Address1</label>
+            <input type="text" id="address1" name="address1" required>
+            <label for="address2">Address2</label>
+            <input type="text" id="address2" name="address2">
+        </div>
+    </form>
+</div>
+
+<div class="checkout-container">
+    <h2>Checkout</h2>
+    <form action="/charge" method="POST" id="checkout-form" class="checkout-form cart-summary" enctype="application/x-www-form-urlencoded">
+        <h3>Cart Summary</h3>
+<!--        <p>Item 1 - $105</p>-->
+<!--        <p>Item 2 - $95</p>-->
+<!--        <p>Item 3 - $100</p>-->
+<!--        <p>Item 4 - $50</p>-->
+<!--        <p>Total - $350</p>-->
+         <input type='hidden' th:value='${amount}' name='amount' />
+         <label>Price:<span th:text='${amount/100}' /></label>
+        <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+        <script
+                src='https://checkout.stripe.com/checkout.js'
+                class='stripe-button'
+                th:attr='data-key=${stripePublicKey},
                          data-amount=${amount},
                          data-currency=${currency}'
-            data-name='Baeldung'
-            data-description='Spring course checkout'
-            data-image='http://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
-            data-locale='auto'
-            data-zip-code='false'>
-    </script>
-</form>
+                data-name='Royal Scent'
+                data-description='Thank you for being our client!'
+                data-image='http://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
+                data-locale='auto'
+                data-zip-code='false'
+                data-success-url='http://localhost8080/result'
+                data-cancel-url='http://localhost8080/result'
+        >
+        </script>
+    </form>
+</div>
 </body>
 </html>

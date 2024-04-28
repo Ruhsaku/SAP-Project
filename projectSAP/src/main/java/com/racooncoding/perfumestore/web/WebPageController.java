@@ -63,14 +63,8 @@ public class WebPageController {
         return "dashboard";
     }
 
-    @Value("${STRIPE_PUBLIC_KEY}")
-    private String stripePublicKey;
-
-    @RequestMapping("/checkout")
-    public String checkout(Model model) {
-        model.addAttribute("amount", 50 * 100); // in cents
-        model.addAttribute("stripePublicKey", stripePublicKey);
-        model.addAttribute("currency", ChargeRequest.Currency.EUR);
-        return "checkout";
+    @RequestMapping("/charge")
+    public String result() {
+        return "result";
     }
 }
