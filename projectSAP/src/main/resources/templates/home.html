@@ -341,7 +341,7 @@
         <div id="cart-items"></div>
         <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
 <!--        TO DO: Add a checkout functionality-->
-        <a href='/checkout'>Checkout</a>
+        <button class="cart-redirect leButton cartB" onclick="redirectToCheckout()">Checkout</button>
         <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
     </div>
     <div style="display: flex; justify-content:center;align-items:center; flex-direction:column;" class="logout">
@@ -400,9 +400,6 @@
 
         // Show the cart
         document.getElementById('cart').style.display = 'block';
-
-
-
     }
     // Scroll wheel
     function handleCartScroll(event) {
@@ -415,6 +412,10 @@
     // Show cart
     function showCart(){
         document.getElementById("cart").style.display = "block"
+    }
+    // Redirect checkout
+    function redirectToCheckout() {
+        window.location.href = '/checkout';
     }
 </script>
 
