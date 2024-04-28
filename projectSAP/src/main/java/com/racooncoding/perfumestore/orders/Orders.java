@@ -3,6 +3,7 @@ package com.racooncoding.perfumestore.orders;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -65,5 +66,31 @@ public class Orders {
 
     public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", customerId=" + customerId +
+                ", addressId=" + addressId +
+                ", orderDate=" + orderDate +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Orders orders = (Orders) o;
+        return Objects.equals(orderId, orders.orderId) &&
+                Objects.equals(customerId, orders.customerId) &&
+                Objects.equals(addressId, orders.addressId) &&
+                Objects.equals(orderDate, orders.orderDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, customerId, addressId, orderDate);
     }
 }

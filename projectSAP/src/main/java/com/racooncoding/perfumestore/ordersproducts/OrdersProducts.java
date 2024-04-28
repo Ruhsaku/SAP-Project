@@ -1,11 +1,13 @@
 package com.racooncoding.perfumestore.ordersproducts;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 
 //@Entity
 //@Table(name =  "OrdersProducts")
 public class OrdersProducts {
-    //    @Id
+//    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderProductId;
     private Integer orderId;
@@ -76,5 +78,16 @@ public class OrdersProducts {
 
     public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersProducts{" +
+                "orderProductId=" + orderProductId +
+                ", orderId=" + orderId +
+                ", productId=" + productId +
+                ", quantity=" + quantity +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }
