@@ -218,6 +218,12 @@
             alert('Please enter valid product price and quantity.');
             return;
         }
+        var pattern1 = /^MEN$/;
+        var pattern2 = /^WOMEN$/;
+        if(!(pattern1.test(productType)||pattern2.test(productType))){
+            alert('Please enter a valid type');
+            return;
+        }
 
         var addProductFormData = {
             productName: productName,

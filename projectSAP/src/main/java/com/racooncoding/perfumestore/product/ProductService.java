@@ -25,28 +25,26 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addNewProduct(Product product) throws InvalidNewProductDataException{
+    public void addNewProduct(Product product) {
         Optional<Product> productOptional = productRepository
                 .findProductByProductName(product.getProductName());
 
         if (productOptional.isPresent()) {
             throw new ProductExistsException();
-        } else {
-            try{
-                productRepository.save(product);
-            }catch (InvalidNewProductDataException e){
-                System.err.println(e.getMessage());
-            }
-
         }
+        if (!product.getProductName().matches("[a-zA-z0-9 ]+")){
+            throw new InvalidNewProductDataException("Invalid product name. Try again.");
+        }
+        productRepository.save(product);
     }
 
-    public void deleteProduct(Integer productId) {
+    public void deleteProduct(Integer productId) throws DeleteProductException {
         boolean exists = productRepository.existsById(productId);
         if (!exists) {
             throw new DeleteProductException(
                     "Product with id " + productId + " does not exist!");
         }
+
         productRepository.deleteById(productId);
     }
 

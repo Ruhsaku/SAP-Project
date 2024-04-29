@@ -5,7 +5,6 @@ import com.racooncoding.perfumestore.exceptions.ProductsListEmptyException;
 import com.racooncoding.perfumestore.exceptions.UpdateProductErrorException;
 import com.racooncoding.perfumestore.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping(path = "/dashboard/getAllProducts")
-    public List<Product> getAllProducts() throws ProductsListEmptyException {
+    public List<Product> getAllProducts(){
 
         if (productService.getAllProducts().isEmpty()){
             throw new ProductsListEmptyException();
@@ -31,21 +30,11 @@ public class ProductController {
 
     @PostMapping(path = "/dashboard/addProduct")
     public ResponseEntity<Response> addNewProduct(@RequestBody Product product){
-    // TODO --> Fix Exception Handling
-        try{
             Response response;
             productService.addNewProduct(product);
             response = new Response("Product added successfully", "/dashboard");
             System.out.println(response.getMessage());
             return ResponseEntity.ok().body(response);
-        }catch (RuntimeException e){
-            Response response;
-            response = new Response("Invalid product data. Try again.", "/dashboard");
-            System.err.println(response.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-
-
     }
 
     @DeleteMapping(path = "/dashboard/removeProduct")
@@ -61,6 +50,7 @@ public class ProductController {
     @PutMapping(path = "/dashboard/updateProduct")
     public ResponseEntity<Response> updateProduct(@RequestBody Product product) throws UpdateProductErrorException {
         // TODO --> Fix Exception Handling
+
         Response response;
         productService.updateProduct(product);
         response = new Response("Product updated successfully", "/dashboard");
