@@ -13,7 +13,7 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String username;
-    private String password;
+    private char[] password;
     private String email;
     private Integer loyaltyPoints;
 
@@ -24,7 +24,7 @@ public class Customer {
     public Customer(Integer customerId,
                     String firstName,
                     String lastName,
-                    String password,
+                    char[] password,
                     String username,
                     String email,
                     Integer loyaltyPoints) {
@@ -39,7 +39,7 @@ public class Customer {
 
     public Customer(String firstName,
                     String lastName,
-                    String password,
+                    char[] password,
                     String username,
                     String email) {
         this.firstName = firstName;
@@ -83,11 +83,11 @@ public class Customer {
     }
 
     public String getPassword() {
-        return password;
+        return new String(password);
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.toCharArray();
     }
 
     public String getEmail() {
@@ -131,4 +131,6 @@ public class Customer {
                 ", loyaltyPoints=" + loyaltyPoints +
                 '}';
     }
+
+
 }

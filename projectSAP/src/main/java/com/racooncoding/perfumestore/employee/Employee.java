@@ -15,7 +15,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String username;
-    private String password;
+    private char[] password;
     private String email;
     private BigDecimal salary;
     private String contactNumber;
@@ -28,7 +28,7 @@ public class Employee {
     public Employee(String firstName,
                     String lastName,
                     String username,
-                    String password,
+                    char[] password,
                     String email,
                     BigDecimal salary,
                     String contactNumber,
@@ -47,7 +47,7 @@ public class Employee {
                     String firstName,
                     String lastName,
                     String username,
-                    String password,
+                    char[] password,
                     String email,
                     BigDecimal salary,
                     String contactNumber,
@@ -97,11 +97,11 @@ public class Employee {
     }
 
     public String getPassword() {
-        return password;
+        return new String(password);
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.toCharArray();
     }
 
     public String getEmail() {

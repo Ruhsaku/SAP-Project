@@ -6,7 +6,7 @@ USE OnlineStore;
 CREATE TABLE Employee (
     employee_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
-    password VARBINARY(255) NOT NULL,-- Security Hash Algorithm 2
+    password VARCHAR(255) NOT NULL,-- Security Hash Algorithm 2
     email VARCHAR(100) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Employee (
 CREATE TABLE Customer (
     customer_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
-    password VARBINARY(255) NOT NULL, -- hashed password SHA2(str, hash_length(bits));
+    password VARCHAR(255) NOT NULL, -- hashed password SHA2(str, hash_length(bits));
 -- Security Hash Algorithm 2
     email VARCHAR(100) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
