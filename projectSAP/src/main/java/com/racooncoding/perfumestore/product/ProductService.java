@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class ProductService {
@@ -50,11 +52,21 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(Product product) throws UpdateProductErrorException {
-        // TODO --> Exception Handling
-        Product existingProduct = productRepository.findById(product.getProductId())
-                .orElseThrow(() -> new UpdateProductErrorException(
-                        "Product with id " + product.getProductId() + " does not exist!"
-                ));
+        boolean exists = productRepository.existsById(product.getProductId());
+        if (!exists) {
+            throw new UpdateProductErrorException(
+                    "Product with id " + product.getProductId() + " does not exist!");
+        }
+
+//        Optional<Product> existingProduct = productRepository.findById(product.getProductId());
+        AtomicReference<Product> existingProduct = new AtomicReference<>(new Product());
+        List<Product> products = productRepository.findAll();
+        products.forEach(p -> {
+            if(Objects.equals(p.getProductId(), product.getProductId())){
+                existingProduct.set(product);
+            }
+        });
+        
         Integer id = product.getProductId();
         String name = product.getProductName();
         ProductType type = product.getProductType();
@@ -63,26 +75,26 @@ public class ProductService {
         String description = product.getProductDescription();
 
         if (id != null && id > 0) {
-            existingProduct.setProductId(id);
+            existingProduct.get().setProductId(id);
         } else {
             throw new UpdateProductErrorException("Id error detected!");
         }
 
         if (name != null) {
-            existingProduct.setProductName(name);
+            existingProduct.get().setProductName(name);
         } else {
             throw new UpdateProductErrorException("Name error detected!");
         }
 
 
         if (type == ProductType.MEN || type == ProductType.WOMEN) {
-            existingProduct.setProductType(type);
+            existingProduct.get().setProductType(type);
         } else {
             throw new UpdateProductErrorException("Type error detected!");
         }
 
         if (quantity > 0) {
-            existingProduct.setProductQuantity(quantity);
+            existingProduct.get().setProductQuantity(quantity);
         } else {
             throw new UpdateProductErrorException("Quantity error detected");
         }
@@ -90,13 +102,13 @@ public class ProductService {
 
 
         if (price != null && price.compareTo(BigDecimal.ZERO) > 0) {
-            existingProduct.setProductPrice(price);
+            existingProduct.get().setProductPrice(price);
         } else {
             throw new UpdateProductErrorException("Price error detected!");
         }
 
         if (description != null) {
-            existingProduct.setProductDescription(description);
+            existingProduct.get().setProductDescription(description);
         } else {
             throw new IllegalArgumentException("Description error detected!");
         }

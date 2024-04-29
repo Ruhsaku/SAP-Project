@@ -310,6 +310,16 @@
             productPrice: newProductPrice,
             productDescription: newProductDescription
         };
+        if (isNaN(productPrice) || productPrice <= 0 || isNaN(productQuantity) || productQuantity <= 0) {
+            alert('Please enter valid product price and quantity.');
+            return;
+        }
+        var pattern1 = /^MEN$/;
+        var pattern2 = /^WOMEN$/;
+        if(!(pattern1.test(productType)||pattern2.test(productType))){
+            alert('Please enter a valid type');
+            return;
+        }
 
         // Send AJAX request to update the product
         $.ajax({
