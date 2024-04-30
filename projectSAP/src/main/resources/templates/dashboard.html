@@ -110,6 +110,10 @@
                 <label for="productQuantity">Product Quantity:</label>
                 <input type="text" id="productQuantity" name="productQuantity" required>
             </div>
+            <div class="form-group">
+                <label for="productImageUrl">Image Address:</label>
+                <input type="text" id="productImageUrl" name="productImageUrl" required>
+            </div>
             <p id="add-message"></p>
             <div class="form-group">
                 <button type="button" class="add-button" onclick="addProduct()">Add Product</button>
@@ -213,6 +217,7 @@
         var productQuantity = $('#productQuantity').val();
         var productPrice = $('#productPrice').val();
         var productDescription = $('#productDescription').val();
+        var productImageUrl = $('#productImageUrl').val();
 
         if (isNaN(productPrice) || productPrice <= 0 || isNaN(productQuantity) || productQuantity <= 0) {
             alert('Please enter valid product price and quantity.');
@@ -230,7 +235,8 @@
             productType: productType,
             productQuantity: productQuantity,
             productPrice: productPrice,
-            productDescription: productDescription
+            productDescription: productDescription,
+            productImageUrl: productImageUrl
         };
 
         $.ajax({

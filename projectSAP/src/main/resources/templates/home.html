@@ -25,21 +25,27 @@
         .products {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: space-between; /* Adjust alignment */
             margin-top: 20px;
-
         }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
         .product {
-            width: calc(33.33% - 20px);
+            width: calc(33.33% - 20px); /* Adjust width of each product container */
             margin-bottom: 20px;
             background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-left:7px;
-            margin-right:7px;
         }
+
         .product img {
             width: 100%;
             display: block;
@@ -139,203 +145,15 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div>
-        <h1 id="website-title">Royal Scent</h1>
-    </div>
-
-    <div class="men">
-        <h2 class="category">Male perfumes</h2>
-    <div class="products">
-
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/-/1-6438825ac1a8405549c5977fb32adf2f-cbd9c16236290a405dfa193961c67923.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Acqua di Gio</h3>
-                <p class="price">$74.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
+    <div class="container">
+        <div>
+            <h1 id="website-title">Royal Scent</h1>
         </div>
-        <div class="product">
-            <img src="https://www.parfimo.bg/data/cache/thumb_min500_max1000-min500_max1000-12/products/904207/1534936728/chanel-bleu-de-chanel-parfyum-za-mazhe-100-ml-245241.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Bleu de Chanel</h3>
-                <p class="price">$89.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://www.sephora.com/productimages/sku/s1565910-main-zoom.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Tom Ford Oud Wood</h3>
-                <p class="price">$129.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://cdn2.parfumdreams.de/image/product/53482-77576-1-0.webp?box=528" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Sauvage </h3>
-                <p class="price">$94.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://essenza-nobile.de/media/image/product/240728/md/creed-aventus-en.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Creed Aventus</h3>
-                <p class="price">$109.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqYccTtWrS2gDLXD2cRK9MZrGgN61FumGewtZUQXcKg&s" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Dior Fahrenheit</h3>
-                <p class="price">$89.99</p>
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://static.beautytocare.com/media/catalog/product/a/c/acqua-di-parma-colonia-eau-de-cologne-180ml.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Acqua di Parma Colonia</h3>
-                <p class="price">$79.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_4649.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Tom Ford Noir</h3>
-                <p class="price">$139.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://www.parfimo.bg/data/cache/thumb_min500_max1000-min500_max1000-12/products/42730/1530453024/issey-miyake-l-eau-d-issey-pour-homme-toaletna-voda-dla-mezczyzn-200-ml-233198.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Issey Miyake L\'Eau d\'Issey Pour Homme</h3>
-                <p class="price">$64.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://www.koku.bg/buxus/images/products/3364428_giorgio-armani-code-plnitelny-edt-75ml-tester.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Armani Code</h3>
-                <p class="price">$99.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-    <div class="women">
-        <h2 class="category">Female perfumes</h2>
         <div class="products">
-            <div class="product">
-                <img src="https://www.koku.bg/buxus/images/products/3327838_6615641640171321.jpg" alt="Perfume 1">
-                <div class="product-details">
-                    <h3 class="productName">Miss Dior</h3>
-                    <p class="price">$79.99</p>
-
-                    <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-
-
-        <div class="product">
-            <img src="https://www.sephora.com/productimages/sku/s43687-main-zoom.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Channel No.5</h3>
-                <p class="price">$99.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_3321_1.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Black Opium</h3>
-                <p class="price">$84.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/-/1-0e89bd97e23d359b9853154f7519a22a.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">J'adore</h3>
-                <p class="price">$99.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/b898e2a9afdff76fada0035d7a852be8/1/_/1_4590.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">La Vie Est Belle</h3>
-                <p class="price">$69.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-        <div class="product">
-            <img src="https://douglas.bg/media/catalog/product/cache/5fce787bab7c2c5339535a641e81e5aa/1/_/1_6289_1.jpg" alt="Perfume 1">
-            <div class="product-details">
-                <h3 class="productName">Gucci Bloom</h3>
-                <p class="price">$99.99</p>
-
-                <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-        </div>
-            <div class="product">
-                <img src="https://parfium.bg/public/img/products/57784/big_christian-dior-miss-dior-blooming-bouquet-parfyum-za-jeni-bez-opakovka-edt-5778414977.jpg" alt="Perfume 1">
-                <div class="product-details">
-                    <h3 class="productName">Miss Dior Blooming Bouquet</h3>
-                    <p class="price">$69.99</p>
-
-                    <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThhma5oS7o1pR6je9njUFzR3bRhJ8ZlKbJrx5JbQYBKg&s" alt="Perfume 1">
-                <div class="product-details">
-                    <h3 class="productName">Lancôme La Vie Est Belle Eau de Toilette</h3>
-                    <p class="price">$84.99</p>
-                    <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcHqyXhruZIXnbCSAFC1qTlQ2xJC7FWplhb2DONP6j8w&s" alt="Perfume 1">
-                <div class="product-details">
-                    <h3 class="productName">Ariana Grande Cloud</h3>
-                    <p class="price">$59.99</p>
-                    <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product">
-                <img src="https://es.victoriassecret.com/p/874x1165/tif/13/b1/13b11a40cbee455c86618dd963fa4db9/112144783872_OM_B.jpg" alt="Perfume 1">
-                <div class="product-details">
-                    <h3 class="productName">Heavenly Glow</h3>
-                    <p class="price">$89.99</p>
-
-                    <button class="addCart" type="submit" onclick="addToCart(this)">Add to Cart</button>
-                </div>
-            </div>
-
+            <div id="products-container"></div>
         </div>
     </div>
+
     <div id="cart" style="display: none; position: fixed; right: 0; top: 50%; transform: translateY(-50%); background-color: white; padding: 10px; border: 1px solid #ddd; width: 300px; max-height: 400px; overflow-y: auto;">
         <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
         <div id="cart-items"></div>
@@ -352,6 +170,41 @@
 
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    fetch('/dashboard/getAllProducts')
+            .then(response => response.json())
+            .then(products => {
+                const productsContainer = document.getElementById('products-container');
+
+                // Iterate through each product and create HTML elements to display them
+                let row;
+                products.forEach((product, index) => {
+                    // Create a new row for every third product
+                    if (index % 3 === 0) {
+                        row = document.createElement('div');
+                        row.classList.add('row');
+                        productsContainer.appendChild(row);
+                    }
+
+                    // Create product element
+                    const productElement = document.createElement('div');
+                    productElement.classList.add('product');
+                    productElement.innerHTML = `
+                        <img src="${product.productImageUrl}" alt="${product.productName}">
+                        <div class="product-details">
+                            <h3>${product.productName}</h3>
+                            <p class="price">$${product.productPrice}</p>
+                            <button class="addCart" type="button" onclick="addToCart(this)">Add to Cart</button>
+                        </div>
+                    `;
+
+                    // Append product to the current row
+                    row.appendChild(productElement);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    });
+
     // Update cart total price
     function updateCartTotal() {
         let totalPrice = 0;
@@ -365,43 +218,42 @@
     }
 
     // Add product to cart
-    function addToCart(button) {
-        const product = button.parentElement.parentElement;
-        const productName = product.querySelector('.productName').textContent;
-        const price = product.querySelector('.price').textContent;
-        const imageUrl = product.querySelector('img').src;
+    function addToCart(product) {
+    const productName = product.productName;
+    const price = product.productPrice;
+    const imageUrl = product.productImageUrl;
 
-        // Create a new cart item
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-        cartItem.innerHTML = `
+    // Create a new cart item
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartItem.innerHTML = `
+        <div class="cart-item-details">
+            <img style="width: 150px" src="${imageUrl}" alt="${productName}">
+            <h3>${productName}</h3>
+            <p class="price">$${price}</p>
+            <button class="cart-item-remove leButton cartB">Remove</button>
+            <hr>
+        </div>
+    `;
 
-            <div class="cart-item-details">
-                <img style="width: 150px" src="${imageUrl}" alt="Perfume">
-                <h3>${productName}</h3>
-                <p class="price">${price}</p>
-                <button class="cart-item-remove leButton cartB">Remove</button>
-                <hr>
-            </div>
-        `;
-
-        // Remove item
-        const removeButton = cartItem.querySelector('.cart-item-remove');
-        removeButton.addEventListener('click', () => {
-            cartItem.remove();
-            updateCartTotal();
-        });
-
-        // Add cart item
-        const cartItems = document.getElementById('cart-items');
-        cartItems.appendChild(cartItem);
-
-        // Update cart total price
+    // Remove item
+    const removeButton = cartItem.querySelector('.cart-item-remove');
+    removeButton.addEventListener('click', () => {
+        cartItem.remove();
         updateCartTotal();
+    });
 
-        // Show the cart
-        document.getElementById('cart').style.display = 'block';
+    // Add cart item
+    const cartItems = document.getElementById('cart-items');
+    cartItems.appendChild(cartItem);
+
+    // Update cart total price
+    updateCartTotal();
+
+    // Show the cart
+    document.getElementById('cart').style.display = 'block';
     }
+
     // Scroll wheel
     function handleCartScroll(event) {
          console.log("Cart scroll event detected:", event.deltaY);

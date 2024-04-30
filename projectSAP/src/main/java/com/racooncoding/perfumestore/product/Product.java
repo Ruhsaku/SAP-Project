@@ -21,6 +21,8 @@ public class Product {
     private BigDecimal productPrice;
     @Column(name = "description")
     private String productDescription;
+    @Column(name = "image_url")
+    private String productImageUrl;
 
     public Product() {
     }
@@ -29,12 +31,14 @@ public class Product {
                    BigDecimal productPrice,
                    String productName,
                    ProductType productType,
-                   Integer productQuantity) {
+                   Integer productQuantity,
+                   String imageUrl) {
         this.productName = productName;
         this.productType = productType;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.productImageUrl = imageUrl;
     }
 
     public Product(Integer productId,
@@ -42,13 +46,15 @@ public class Product {
                    ProductType productType,
                    Integer productQuantity,
                    BigDecimal productPrice,
-                   String productDescription) {
+                   String productDescription,
+                   String imageUrl) {
         this.productId = productId;
         this.productName = productName;
         this.productType = productType;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.productImageUrl = imageUrl;
     }
 
     public Integer getProductId() {
@@ -99,6 +105,27 @@ public class Product {
         this.productDescription = productDescription;
     }
 
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && productType == product.productType && Objects.equals(productQuantity, product.productQuantity) && Objects.equals(productPrice, product.productPrice) && Objects.equals(productDescription, product.productDescription) && Objects.equals(productImageUrl, product.productImageUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, productType, productQuantity, productPrice, productDescription, productImageUrl);
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -106,26 +133,9 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", productType=" + productType +
                 ", productQuantity=" + productQuantity +
-                ", price=" + productPrice +
-                ", description='" + productDescription + '\'' +
+                ", productPrice=" + productPrice +
+                ", productDescription='" + productDescription + '\'' +
+                ", imageUrl='" + productImageUrl + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product products = (Product) o;
-        return Objects.equals(productId, products.productId) &&
-                Objects.equals(productName, products.productName) &&
-                productType == products.productType &&
-                Objects.equals(productQuantity, products.productQuantity) &&
-                Objects.equals(productPrice, products.productPrice) &&
-                Objects.equals(productDescription, products.productDescription);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, productType, productQuantity, productPrice, productDescription);
     }
 }

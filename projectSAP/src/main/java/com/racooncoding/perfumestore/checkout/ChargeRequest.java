@@ -19,4 +19,36 @@ public class ChargeRequest {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public String getStripeEmail() {
+        return stripeEmail;
+    }
+
+    public void setStripeEmail(String stripeEmail) {
+        this.stripeEmail = stripeEmail;
+    }
+
+    public String getStripeToken() {
+        return stripeToken;
+    }
+
+    public void setStripeToken(String stripeToken) {
+        this.stripeToken = stripeToken;
+    }
 }
