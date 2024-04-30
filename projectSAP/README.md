@@ -1,4 +1,4 @@
-# PROJECT SAP
+# PROJECT-SAP
 The project is a marketing website called "Royal Scent".
 
 It's a perfume store on which you add the desired items to 
