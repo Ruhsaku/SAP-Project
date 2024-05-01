@@ -22,7 +22,7 @@ public class CustomerTests {
 
     @Test
     void testAddNewCustomer_Successful() {
-        Customer customer = new Customer("John", "Doe", "Password1".toCharArray(), "johndoe", "john@example.com");
+        Customer customer = new Customer("John", "Doe", "password".toCharArray(), "johndoe", "john@example.com");
         when(customerRepository.findCustomerByEmail(customer.getEmail())).thenReturn(Optional.empty());
 
         assertDoesNotThrow(() -> customerService.addNewCustomer(customer));
@@ -39,17 +39,18 @@ public class CustomerTests {
     @Test
     void testLoginCustomer_Successful() {
         Customer customer = new Customer("John", "Doe", "password".toCharArray(), "johndoe", "john@example.com");
+        // Mock the customer repository
         when(customerRepository.findCustomerByEmail(customer.getEmail())).thenReturn(Optional.of(customer));
+
         assertTrue(customerService.login(customer));
     }
 
     @Test
-    void testLoginCustomer_InvalidCredentials() {
-        Customer customer = new Customer("John", "Doe", "Password1".toCharArray(), "johndoe", "john@example.com");
+    void testLoginCustomer_Unsuccessful() {
+        Customer customer = new Customer("John", "Doe", "password".toCharArray(), "johndoe", "john@example.com");
         // Mocking the behavior to return a non-empty Optional with the customer object
         when(customerRepository.findCustomerByEmail(customer.getEmail())).thenReturn(Optional.of(customer));
 
-        // Attempting login with incorrect password
         assertFalse(customerService.login(new Customer("John", "Doe", "wrongpassword".toCharArray(), "johndoe", "john@example.com")));
     }
 
