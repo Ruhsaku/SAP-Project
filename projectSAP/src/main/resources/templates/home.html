@@ -190,8 +190,9 @@
                     const productElement = document.createElement('div');
                     productElement.classList.add('product');
                     productElement.innerHTML = `
-                        <img src="${product.productImageUrl}" alt="${product.productName}">
+
                         <div class="product-details">
+                            <img src="${product.productImageUrl}" alt="${product.productName}">
                             <h3>${product.productName}</h3>
                             <p class="price">$${product.productPrice}</p>
                             <button class="addCart" type="button" onclick="addToCart(this)">Add to Cart</button>
@@ -217,24 +218,26 @@
         document.getElementById('cart-total-price').textContent = totalPrice.toFixed(2);
     }
 
-    // Add product to cart
-    function addToCart(product) {
-    const productName = product.productName;
-    const price = product.productPrice;
-    const imageUrl = product.productImageUrl;
+    //Add product to cart
+    function addToCart(button) {
+        const productElement = button.parentNode;
 
-    // Create a new cart item
-    const cartItem = document.createElement('div');
-    cartItem.classList.add('cart-item');
-    cartItem.innerHTML = `
-        <div class="cart-item-details">
-            <img style="width: 150px" src="${imageUrl}" alt="${productName}">
-            <h3>${productName}</h3>
-            <p class="price">$${price}</p>
-            <button class="cart-item-remove leButton cartB">Remove</button>
-            <hr>
-        </div>
-    `;
+        const productName = productElement.querySelector('h3').textContent;
+        const price = productElement.querySelector('.price').textContent.slice(1); // Remove dollar sign
+        const imageUrl = productElement.querySelector('img').src;
+
+        // Create a new cart item
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <div class="cart-item-details">
+                <img style="width: 150px" src="${imageUrl}" alt="${productName}">
+                <h3>${productName}</h3>
+                <p class="price">$${price}</p>
+                <button class="cart-item-remove leButton cartB">Remove</button>
+                <hr>
+            </div>
+        `;
 
     // Remove item
     const removeButton = cartItem.querySelector('.cart-item-remove');

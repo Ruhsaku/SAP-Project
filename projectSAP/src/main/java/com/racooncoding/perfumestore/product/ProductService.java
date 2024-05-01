@@ -87,31 +87,18 @@ public class ProductService {
         }
 
 
-        if (type == ProductType.MEN || type == ProductType.WOMEN) {
-            existingProduct.get().setProductType(type);
-        } else {
-            throw new UpdateProductErrorException("Type error detected!");
-        }
+        existingProduct.get().setProductType(type);
 
-        if (quantity > 0) {
-            existingProduct.get().setProductQuantity(quantity);
-        } else {
-            throw new UpdateProductErrorException("Quantity error detected");
-        }
+
+        existingProduct.get().setProductQuantity(quantity);
 
 
 
-        if (price != null && price.compareTo(BigDecimal.ZERO) > 0) {
-            existingProduct.get().setProductPrice(price);
-        } else {
-            throw new UpdateProductErrorException("Price error detected!");
-        }
 
-        if (description != null) {
-            existingProduct.get().setProductDescription(description);
-        } else {
-            throw new IllegalArgumentException("Description error detected!");
-        }
+        existingProduct.get().setProductPrice(price);
+
+
+        existingProduct.get().setProductDescription(description);
 
     }
 }
