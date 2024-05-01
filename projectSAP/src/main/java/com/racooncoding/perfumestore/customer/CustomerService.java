@@ -34,15 +34,11 @@ public class CustomerService {
         Optional<Customer> customerOptional = customerRepository.
                 findCustomerByEmail(customer.getEmail());
 
-        if (customerOptional.isPresent()) {
-            Customer storedCustomer = customerOptional.get();
-            if (PasswordDecoder.verifyPassword(customer.getPassword(), storedCustomer.getPassword())) {
-                return true;
-            } else {
-                throw new IncorrectPasswordException();
-            }
-        } else {
+        if (!customerOptional.isPresent()) {
             throw new UserNotFoundException();
+        } else {
+            return PasswordDecoder.verifyPassword(customer.getPassword(),
+                    customerOptional.get().getPassword());
         }
     }
 }
