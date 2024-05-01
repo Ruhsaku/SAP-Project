@@ -274,12 +274,12 @@
     function redirectToCheckout() {
 
         var totalPrice = document.getElementById("cart-total-price").textContent;
-        console.log(totalPrice);
         if(parseFloat(totalPrice) > 0){
             sessionStorage.setItem("totalPrice",totalPrice);
+            console.log(sessionStorage.getItem("totalPrice"));
             window.location.href = '/checkout';
         }else{
-            alert('You cannot checkout on an empty cart.');
+            alert('You cannot check out with an empty cart.');
             return;
         }
 

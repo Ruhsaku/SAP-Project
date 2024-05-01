@@ -106,10 +106,10 @@
                 data-cancel-url='http://localhost8080/result'
         >
             document.addEventListener("DOMContentLoaded", function() {
-                const totalPrice = sessionStorage.getItem("totalPrice");
-                console.log(sessionStorage.getItem("totalPrice"));
+                var totalPrice = sessionStorage.getItem("totalPrice");
                 document.getElementById("checkout-price").textContent = totalPrice;
-                sessionStorage.clear();
+
+<!--                sessionStorage.removeItem("totalPrice");-->
             });
 
         </script>
