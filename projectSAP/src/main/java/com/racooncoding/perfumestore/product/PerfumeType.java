@@ -1,6 +1,6 @@
 package com.racooncoding.perfumestore.product;
 
-public enum ProductType {
+public enum PerfumeType {
     MEN,
     WOMEN
 }

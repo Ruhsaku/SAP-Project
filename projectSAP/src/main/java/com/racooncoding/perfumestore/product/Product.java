@@ -14,7 +14,7 @@ public class Product {
     private String productName;
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private ProductType productType;
+    private PerfumeType perfumeType;
     @Column(name = "quantity")
     private Integer productQuantity;
     @Column(name = "price", precision = 10, scale = 2, nullable = true)
@@ -30,11 +30,11 @@ public class Product {
     public Product(String productDescription,
                    BigDecimal productPrice,
                    String productName,
-                   ProductType productType,
+                   PerfumeType perfumeType,
                    Integer productQuantity,
                    String imageUrl) {
         this.productName = productName;
-        this.productType = productType;
+        this.perfumeType = perfumeType;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
@@ -43,14 +43,14 @@ public class Product {
 
     public Product(Integer productId,
                    String productName,
-                   ProductType productType,
+                   PerfumeType perfumeType,
                    Integer productQuantity,
                    BigDecimal productPrice,
                    String productDescription,
                    String imageUrl) {
         this.productId = productId;
         this.productName = productName;
-        this.productType = productType;
+        this.perfumeType = perfumeType;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
@@ -73,12 +73,12 @@ public class Product {
         this.productName = productName;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public PerfumeType getProductType() {
+        return perfumeType;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductType(PerfumeType perfumeType) {
+        this.perfumeType = perfumeType;
     }
 
     public Integer getProductQuantity() {
@@ -118,12 +118,12 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && productType == product.productType && Objects.equals(productQuantity, product.productQuantity) && Objects.equals(productPrice, product.productPrice) && Objects.equals(productDescription, product.productDescription) && Objects.equals(productImageUrl, product.productImageUrl);
+        return Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && perfumeType == product.perfumeType && Objects.equals(productQuantity, product.productQuantity) && Objects.equals(productPrice, product.productPrice) && Objects.equals(productDescription, product.productDescription) && Objects.equals(productImageUrl, product.productImageUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, productType, productQuantity, productPrice, productDescription, productImageUrl);
+        return Objects.hash(productId, productName, perfumeType, productQuantity, productPrice, productDescription, productImageUrl);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class Product {
         return "Product{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
-                ", productType=" + productType +
+                ", perfumeType=" + perfumeType +
                 ", productQuantity=" + productQuantity +
                 ", productPrice=" + productPrice +
                 ", productDescription='" + productDescription + '\'' +

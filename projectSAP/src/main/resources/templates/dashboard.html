@@ -95,8 +95,8 @@
                 <input type="text" id="productName" name="productName" required>
             </div>
             <div class="form-group">
-                <label for="productType">Product Type:</label>
-                <input type="text" id="productType" name="productType" required>
+                <label for="perfumeType">Product Type:</label>
+                <input type="text" id="perfumeType" name="perfumeType" required>
             </div>
             <div class="form-group">
                 <label for="productDescription">Product Description:</label>
@@ -185,7 +185,7 @@
                     + "<p>Price: $" + product.productPrice + "</p>"
                     + "<p>Quantity: " + product.productQuantity + "</p>"
                     + "<p>Description: " + product.productDescription + "</p>"
-                    + "<p>Type: " + product.productType + "</p>"
+                    + "<p>Type: " + product.perfumeType + "</p>"
                     + "<hr>");
                 $("#productList").append(productDiv);
             });
@@ -213,7 +213,7 @@
     }
     function addProduct() {
         var productName = $('#productName').val();
-        var productType = $('#productType').val();
+        var perfumeType = $('#perfumeType').val();
         var productQuantity = $('#productQuantity').val();
         var productPrice = $('#productPrice').val();
         var productDescription = $('#productDescription').val();
@@ -225,14 +225,14 @@
         }
         var pattern1 = /^MEN$/;
         var pattern2 = /^WOMEN$/;
-        if(!(pattern1.test(productType)||pattern2.test(productType))){
+        if(!(pattern1.test(perfumeType)||pattern2.test(perfumeType))){
             alert('Please enter a valid type');
             return;
         }
 
         var addProductFormData = {
             productName: productName,
-            productType: productType,
+            perfumeType: perfumeType,
             productQuantity: productQuantity,
             productPrice: productPrice,
             productDescription: productDescription,
@@ -311,7 +311,7 @@
         var updateProductData = {
             productId: updateProductId,
             productName: newProductName,
-            productType: newProductType,
+            perfumeType: newProductType,
             productQuantity: newProductQuantity,
             productPrice: newProductPrice,
             productDescription: newProductDescription
@@ -322,7 +322,7 @@
         }
         var pattern1 = /^MEN$/;
         var pattern2 = /^WOMEN$/;
-        if(!(pattern1.test(productType)||pattern2.test(productType))){
+        if(!(pattern1.test(perfumeType)||pattern2.test(perfumeType))){
             alert('Please enter a valid type');
             return;
         }

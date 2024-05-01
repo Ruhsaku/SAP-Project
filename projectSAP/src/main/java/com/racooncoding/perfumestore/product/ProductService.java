@@ -69,7 +69,7 @@ public class ProductService {
         
         Integer id = product.getProductId();
         String name = product.getProductName();
-        ProductType type = product.getProductType();
+        PerfumeType type = product.getProductType();
         Integer quantity = product.getProductQuantity();
         BigDecimal price = product.getProductPrice();
         String description = product.getProductDescription();
@@ -88,16 +88,8 @@ public class ProductService {
 
 
         existingProduct.get().setProductType(type);
-
-
         existingProduct.get().setProductQuantity(quantity);
-
-
-
-
         existingProduct.get().setProductPrice(price);
-
-
         existingProduct.get().setProductDescription(description);
 
     }
