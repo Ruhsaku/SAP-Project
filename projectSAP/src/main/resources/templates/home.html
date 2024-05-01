@@ -145,27 +145,28 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1 id="website-title">Royal Scent</h1>
-        </div>
-        <div class="products">
-            <div id="products-container"></div>
-        </div>
+<div class="container">
+    <div>
+        <h1 id="website-title">Royal Scent</h1>
     </div>
+    <div class="products">
+        <div id="products-container"></div>
+    </div>
+</div>
 
-    <div id="cart" style="display: none; position: fixed; right: 0; top: 50%; transform: translateY(-50%); background-color: white; padding: 10px; border: 1px solid #ddd; width: 300px; max-height: 400px; overflow-y: auto;">
-        <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
-        <div id="cart-items"></div>
-        <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
+<div id="cart"
+     style="display: none; position: fixed; right: 0; top: 50%; transform: translateY(-50%); background-color: white; padding: 10px; border: 1px solid #ddd; width: 300px; max-height: 400px; overflow-y: auto;">
+    <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
+    <div id="cart-items"></div>
+    <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
 
-        <button class="cart-redirect leButton cartB" onclick="redirectToCheckout()">Checkout</button>
-        <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
-    </div>
-    <div style="display: flex; justify-content:center;align-items:center; flex-direction:column;" class="logout">
-        <p><a class="leButton" onclick="showCart()">Cart</a></p>
-        <p><a class="leButton" href="/login">Logout</a></p>
-    </div>
+    <button class="cart-redirect leButton cartB" onclick="redirectToCheckout()">Checkout</button>
+    <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
+</div>
+<div style="display: flex; justify-content:center;align-items:center; flex-direction:column;" class="logout">
+    <p><a class="leButton" onclick="showCart()">Cart</a></p>
+    <p><a class="leButton" href="/login">Logout</a></p>
+</div>
 </div>
 
 </body>

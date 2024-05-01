@@ -1,10 +1,11 @@
 package com.racooncoding.perfumestore.exceptions;
 
-public class UpdateProductErrorException extends Exception{
-    public UpdateProductErrorException(){
+public class UpdateProductErrorException extends Exception {
+    public UpdateProductErrorException() {
         super("Could not update product");
     }
-    public UpdateProductErrorException(String message){
+
+    public UpdateProductErrorException(String message) {
         super(message);
     }
 
@@ -12,7 +13,8 @@ public class UpdateProductErrorException extends Exception{
     public String getMessage() {
         return super.getMessage();
     }
-    public String getMessage(String m){
+
+    public String getMessage(String m) {
         return m;
     }
 }

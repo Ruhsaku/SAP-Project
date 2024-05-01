@@ -18,7 +18,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping(path ="/login/employee")
+    @PostMapping(path = "/login/employee")
     @ResponseBody
     public ResponseEntity<Response> loginEmployee(@RequestBody Employee employee) {
         Response response;

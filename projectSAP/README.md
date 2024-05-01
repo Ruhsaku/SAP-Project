@@ -11,5 +11,5 @@ To use the website you need to set up the database on your desired relational da
 
 After a successful register and login you go to the home menu and navigate by the given UI.
 
-Project authors: Etienne Tonev, Stanislav Mitev, Martin Yovchev
+Project authors: Martin Yovchev, Stanislav Mitev, Etienne Tonev
 

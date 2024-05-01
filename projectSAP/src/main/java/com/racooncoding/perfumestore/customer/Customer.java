@@ -131,6 +131,4 @@ public class Customer {
                 ", loyaltyPoints=" + loyaltyPoints +
                 '}';
     }
-
-
 }

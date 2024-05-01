@@ -20,21 +20,21 @@ public class ProductController {
     }
 
     @GetMapping(path = "/dashboard/getAllProducts")
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
 
-        if (productService.getAllProducts().isEmpty()){
+        if (productService.getAllProducts().isEmpty()) {
             throw new ProductsListEmptyException();
         }
         return productService.getAllProducts();
     }
 
     @PostMapping(path = "/dashboard/addProduct")
-    public ResponseEntity<Response> addNewProduct(@RequestBody Product product){
-            Response response;
-            productService.addNewProduct(product);
-            response = new Response("Product added successfully", "/dashboard");
-            System.out.println(response.getMessage());
-            return ResponseEntity.ok().body(response);
+    public ResponseEntity<Response> addNewProduct(@RequestBody Product product) {
+        Response response;
+        productService.addNewProduct(product);
+        response = new Response("Product added successfully", "/dashboard");
+        System.out.println(response.getMessage());
+        return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping(path = "/dashboard/removeProduct")

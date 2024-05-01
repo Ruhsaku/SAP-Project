@@ -18,6 +18,7 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
     @PostMapping(path = "/register")
     public ResponseEntity<Response> registerNewCustomer(@RequestBody Customer customer) {
         Response response;

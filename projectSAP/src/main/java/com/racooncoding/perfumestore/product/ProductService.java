@@ -34,7 +34,7 @@ public class ProductService {
         if (productOptional.isPresent()) {
             throw new ProductExistsException();
         }
-        if (!product.getProductName().matches("[a-zA-z0-9 ]+")){
+        if (!product.getProductName().matches("[a-zA-z0-9 ]+")) {
             throw new InvalidNewProductDataException("Invalid product name. Try again.");
         }
         productRepository.save(product);
@@ -62,11 +62,11 @@ public class ProductService {
         AtomicReference<Product> existingProduct = new AtomicReference<>(new Product());
         List<Product> products = productRepository.findAll();
         products.forEach(p -> {
-            if(Objects.equals(p.getProductId(), product.getProductId())){
+            if (Objects.equals(p.getProductId(), product.getProductId())) {
                 existingProduct.set(product);
             }
         });
-        
+
         Integer id = product.getProductId();
         String name = product.getProductName();
         PerfumeType type = product.getProductType();

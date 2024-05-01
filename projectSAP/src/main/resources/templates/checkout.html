@@ -79,15 +79,16 @@
 
 <div class="checkout-container">
     <h2>Checkout</h2>
-    <form action="/charge" method="POST" id="checkout-form" class="checkout-form cart-summary" enctype="application/x-www-form-urlencoded">
+    <form action="/charge" method="POST" id="checkout-form" class="checkout-form cart-summary"
+          enctype="application/x-www-form-urlencoded">
         <h3>Cart Summary</h3>
-<!--        <p>Item 1 - $105</p>-->
-<!--        <p>Item 2 - $95</p>-->
-<!--        <p>Item 3 - $100</p>-->
-<!--        <p>Item 4 - $50</p>-->
-<!--        <p>Total - $350</p>-->
-         <input type='hidden' th:value='${amount}' name='amount' />
-<!--         <label>Price:<span th:text='${amount/100}' /></label>-->
+        <!--        <p>Item 1 - $105</p>-->
+        <!--        <p>Item 2 - $95</p>-->
+        <!--        <p>Item 3 - $100</p>-->
+        <!--        <p>Item 4 - $50</p>-->
+        <!--        <p>Total - $350</p>-->
+        <input type='hidden' th:value='${amount}' name='amount'/>
+        <!--         <label>Price:<span th:text='${amount/100}' /></label>-->
         <p>Total: $<span id="checkout-price">0.00</span></p>
         <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
         <script

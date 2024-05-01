@@ -23,7 +23,7 @@ public class ChargeController {
     // TODO --> amount must be Total Price from all products combined
     // TODO --> Generate new order in the database
     // TODO --> Save new address in the database for order
-    @PostMapping(path ="/charge")
+    @PostMapping(path = "/charge")
     public String charge(ChargeRequest chargeRequest, Model model) throws StripeException {
         Response response = new Response("Successful charging!");
         chargeRequest.setDescription("Example charge");

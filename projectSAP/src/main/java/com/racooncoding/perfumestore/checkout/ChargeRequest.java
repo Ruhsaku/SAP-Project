@@ -7,6 +7,7 @@ public class ChargeRequest {
     public enum Currency {
         EUR, USD;
     }
+
     private String description;
     private Integer amount; // cents
     private Currency currency;
@@ -16,6 +17,7 @@ public class ChargeRequest {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
