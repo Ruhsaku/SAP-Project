@@ -87,7 +87,8 @@
 <!--        <p>Item 4 - $50</p>-->
 <!--        <p>Total - $350</p>-->
          <input type='hidden' th:value='${amount}' name='amount' />
-         <label>Price:<span th:text='${amount/100}' /></label>
+<!--         <label>Price:<span th:text='${amount/100}' /></label>-->
+        <p>Total: $<span id="checkout-price">0.00</span></p>
         <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
         <script
                 src='https://checkout.stripe.com/checkout.js'
@@ -103,6 +104,13 @@
                 data-success-url='http://localhost8080/result'
                 data-cancel-url='http://localhost8080/result'
         >
+            document.addEventListener("DOMContentLoaded", function() {
+                const totalPrice = sessionStorage.getItem("totalPrice");
+                console.log(sessionStorage.getItem("totalPrice"));
+                document.getElementById("checkout-price").textContent = totalPrice;
+                sessionStorage.clear();
+            });
+
         </script>
     </form>
 </div>

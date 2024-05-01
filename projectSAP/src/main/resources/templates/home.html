@@ -158,7 +158,7 @@
         <h2 style="text-align:center; background-color: #04AA6D ;padding: 10px 0px ;">Cart</h2>
         <div id="cart-items"></div>
         <p id="cart-total">Total: $<span id="cart-total-price">0.00</span></p>
-<!--        TO DO: Add a checkout functionality-->
+
         <button class="cart-redirect leButton cartB" onclick="redirectToCheckout()">Checkout</button>
         <button class="cart-hide leButton cartB" onclick="hideCart()">Hide Cart</button>
     </div>
@@ -271,7 +271,17 @@
     }
     // Redirect checkout
     function redirectToCheckout() {
-        window.location.href = '/checkout';
+
+        var totalPrice = document.getElementById("cart-total-price").textContent;
+        console.log(totalPrice);
+        if(parseFloat(totalPrice) > 0){
+            sessionStorage.setItem("totalPrice",totalPrice);
+            window.location.href = '/checkout';
+        }else{
+            alert('You cannot checkout on an empty cart.');
+            return;
+        }
+
     }
 </script>
 
